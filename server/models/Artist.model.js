@@ -24,7 +24,7 @@ const artistSchema = new Schema({
     required: [true, 'Please provide a link to one of the artist\'s songs.']
   },
   'creatorId': {
-    type: [Schema.Types.ObjectId],
+    type: Schema.Types.ObjectId,
     ref: 'User',
   }
 });
