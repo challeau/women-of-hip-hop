@@ -8,12 +8,7 @@ const userSchema = new Schema({
   password: {
     String,
     required: [true, "Please provide a password."],
-  } /* ,
-  email: {
-    String,
-    required: [true, "Please provide an email."]
-
-  } */,
+  },
   image: {
     String,
     default: "https://pbs.twimg.com/media/FE-7qY8WUAATlNV.jpg",
@@ -21,7 +16,7 @@ const userSchema = new Schema({
 
   favoriteArtist: {
     type: [Schema.Types.ObjectId],
-    ref: 'User'
+    ref: "User",
   },
 });
 
