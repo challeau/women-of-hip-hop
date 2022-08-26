@@ -12,16 +12,9 @@ router.post("/signup", async (req, res, next) => {
   if (!password || !username) {
     return res
       .status(400)
-      .json({ message: "Please provide a password and username." });
+      .json({ message: "Please provide a valid password and username." });
   }
   try {
-    const foundUser = await User.findOne({ username });
-    if (foundUser) {
-      return res.status(400).json({
-        message:
-          "Username already exist, try logging in or registering with an other username.",
-      });
-    }
     const generatedSalt = bcrypt.genSaltSync(salt);
     const hashedPassword = bcrypt.hashSync(password, generatedSalt);
 
@@ -32,7 +25,7 @@ router.post("/signup", async (req, res, next) => {
     const createdUser = await User.create(newUser);
     res.status(201).json(createdUser);
   } catch (error) {
-    next(error);
+    next(error.message);
   }
 });
 
@@ -48,13 +41,13 @@ router.post("/login", async (req, res, next) => {
     if (!foundUser) {
       return res.status(400).json({ message: "wrong credentials" });
     }
-
     const matchingPassword = bcrypt.compareSync(password, foundUser.password);
     if (!matchingPassword) {
       return res.status(400).json({ message: "wrong credentials" });
     }
 
     const payload = { username };
+    console.log(process.env.TOKEN_SECRET)
     const token = jsonWebToken.sign(payload, process.env.TOKEN_SECRET, {
       algorithm: "HS256",
       expiresIn: "1h",

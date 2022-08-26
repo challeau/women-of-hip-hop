@@ -12,7 +12,7 @@ const { isAuthenticated } = require("./middleware/middlewares.js");
 require("./config")(app);
 
 // Connect to the database
-require("../db");
+require("../db")();
 
 // Routing
 const index = require("./routes/index.routes");
