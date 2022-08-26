@@ -3,13 +3,13 @@ const express = require('express');
 const app = express();
 
 // Link error handler
-require('./error-handling')(app);
+// require('./error-handling')(app);
 
 // Connect to the database
-require('./db');
+// require('./db');
 
 // Routing
-const index = require('./routes/index');
+const index = require('./routes/index.routes');
 app.use('/', index);
 
 // Authentification routes
