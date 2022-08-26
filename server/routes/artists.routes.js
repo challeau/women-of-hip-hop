@@ -7,27 +7,27 @@ function getRandomIndex() {
   return (rand);
 }
 
-// // get all artists
-// router.get('/shuffle', async (req, res, next) => {
-//   try {
-//     const oneArtist = Artist.find({})[getRandomIndex()];
-//     console.log(oneArtist);
-//     res.status(200).json(oneArtist.populate('album'));
-//   } catch (error){
-//     next(error.message);
-//   }
-// });
+// get all artists
+router.get('/', async (req, res, next) => {
+  try {
+    const artists = Artist.find();
+    console.log(artists);
+    res.status(200).json({ artists });
+  } catch (error){
+    next(error.message);
+  }
+});
 
-// // get one artist at random
-// router.get('/shuffle', async (req, res, next) => {
-//   try {
-//     const oneArtist = Artist.find({})[getRandomIndex()];
-//     console.log(oneArtist);
-//     res.status(200).json(oneArtist.populate('album'));
-//   } catch (error){
-//     next(error.message);
-//   }
-// });
+// get one artist at random
+router.get('/shuffle', async (req, res, next) => {
+  try {
+    const oneArtist = Artist.find({})[getRandomIndex()];
+    console.log(oneArtist);
+    res.status(200).json(oneArtist.populate('album'));
+  } catch (error){
+    next(error.message);
+  }
+});
 
 
 
