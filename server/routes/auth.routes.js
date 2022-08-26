@@ -6,7 +6,8 @@ const salt = 10;
 
 const { isAuthenticated } = require("../middleware/middlewares");
 
-router.post("/signup", isAuthenticated, async (req, res, next) => {
+router.post("/signup", async (req, res, next) => {
+  console.log(req.body);
   const { username, password } = req.body;
   if (!password || !username) {
     return res
@@ -64,4 +65,4 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-module.exports = router
+module.exports = router;
