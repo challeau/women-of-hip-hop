@@ -65,6 +65,13 @@ The song will be loaded thanks to a youtube iFrame or the Spotify API if time al
 
 <br/>
 
+## STEPS SEEDING
+- seeding : 
+``` bash
+sudo service mongod start
+node <seed.file>```
+
+
 ## BONUS
 
 A cool frontend: black and gold, luxurious but minimalist.
