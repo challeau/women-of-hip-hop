@@ -13,8 +13,9 @@ const index = require('./routes/index.routes');
 app.use('/', index);
 
 // Authentification routes
+const isAuthenticated = require('./middleware/middlewares.js')
 const auth = require('./routes/auth.routes');
-app.use('/auth', auth);
+app.use('/auth', isAutenticated, auth);
 
 // Artists DB interactions routes
 const artists = require('./routes/artists.routes');
