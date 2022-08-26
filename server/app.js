@@ -1,13 +1,18 @@
-// Connect to the database
-require('./db');
-
+// Express
 const express = require('express');
 const app = express();
 
+// Link error handler
+require('./error-handling')(app);
+
+// Connect to the database
+require('./db');
+
+// Routing
 const index = require('./routes/index');
 app.use('/', index);
 
-// authentification routes
+// Authentification routes
 const auth = require('./routes/auth.routes');
 app.use('/auth', auth);
 
@@ -16,16 +21,7 @@ const artists = require('./routes/artists.routes');
 app.use('/artists', artists);
 
 // User's favorites list routes
-const artists = require('./routes/artists.routes');
-app.use('/artists', artists);
-
-// protected routes
-const { isAuthenticated } = require('../middleware/jwt.middleware'); /// CHECK WHERE MER PUT THE DIR
-const protected = require('./routes/protected.routes');
-app.use('/', isAuthenticated, protected);
-
-
-// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
-require('./error-handling')(app);
+const favorites = require('./routes/favorites.routes');
+app.use('/favorites', favorites);
 
 module.exports = app;
