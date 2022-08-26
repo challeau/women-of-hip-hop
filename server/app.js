@@ -2,6 +2,9 @@
 const express = require('express');
 const app = express();
 
+// Link middleware
+const { isAuthenticated } = require('./middleware/middlewares.js')
+
 // Link error handler
 // require('./error-handling')(app);
 
@@ -13,16 +16,15 @@ const index = require('./routes/index.routes');
 app.use('/', index);
 
 // Authentification routes
-const isAuthenticated = require('./middleware/middlewares.js')
 const auth = require('./routes/auth.routes');
-app.use('/auth', isAutenticated, auth);
+app.use('/auth', isAuthenticated, auth);
 
 // Artists DB interactions routes
 const artists = require('./routes/artists.routes');
-app.use('/artists', artists);
+app.use('/artists', isAuthenticated, artists);
 
 // User's favorites list routes
 const favorites = require('./routes/favorites.routes');
-app.use('/favorites', favorites);
+app.use('/favorites', isAuthenticated, favorites);
 
 module.exports = app;
