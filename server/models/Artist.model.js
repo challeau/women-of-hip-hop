@@ -19,7 +19,7 @@ const artistSchema = new Schema({
     ref: 'Album',
     required: [true, 'Please provide a list of albums.']
   },
-  'FlagSong': {
+  'flagSong': {
     type: String,
     required: [true, 'Please provide a link to one of the artist\'s songs.']
   },

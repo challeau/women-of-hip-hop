@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Artist = require('../models/Artist.model.js');
+const User = require('../models/User.model.js');
 const { isAuthenticated, canEdit } = require('../middleware/middlewares.js');
 
 async function getRandomIndex() {
@@ -30,6 +31,30 @@ router.get('/shuffle', async (req, res, next) => {
   }
 });
 
+// add artist to db
+router.post('/', async (req, res, next) => {
+  try {
+    // const { name, picture, miniBio, albums, flagSong } = req.body;
+    const artist = await Artist.create(req.body);
+    artist.creatorId = req.user._id;
+    res.status(201).json(oneArtist);
+  } catch (error){
+    next(error.message);
+  }
+});
+
+// delete artist from db
+router.delete('/:artistId', canEdit, async (req, res, next) => {
+  try {
+    const id = req.params.artistId;
+    if (!mongoose.isValidObjectId(id))
+      throw({ message: 'Please provide a valid Id' });
+    await Artist.findByIdAndDelete(req.params.id);
+    res.sendStatus(204).json({204});
+  } catch (error){
+    next(error.message);
+  }
+});
 
 
 module.exports = router;
