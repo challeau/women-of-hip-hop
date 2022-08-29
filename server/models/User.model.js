@@ -4,7 +4,7 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: [true, "Please provide a username."],
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
@@ -18,6 +18,10 @@ const userSchema = new Schema({
   favoriteArtist: {
     type: [Schema.Types.ObjectId],
     ref: "User",
+  },
+  role: {
+    type: String,
+    enum: ["admin"],
   },
 });
 
