@@ -24,6 +24,7 @@ const canEdit = (req, res, next) => {
   if (req.user.role === "admin") {
     next();
   } else {
+    console.log(req);
     return res.status(401).json({ message: "Sorry you're not allowed to do that !" });
   }
 };
