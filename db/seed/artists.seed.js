@@ -31,13 +31,17 @@ const artists = [
 mongoose
   .connect(MONGO_URI)
   .then((x) => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
   })
-  .then(async () => {
-    const newArtists = await Artist.create(artists);
-    console.log(`Successfully seeded ${newArtists.length} new artists.`);
-  })
-  .finally(() => mongoose.connection.close())
   .catch((err) => {
     console.error("Error connecting to mongo: ", err);
   });
+const seedArtists = async () => {
+  await Artist.deleteMany({});
+  await Artist.insertMany(artists);
+};
+seedArtists().then(() => {
+  mongoose.connection.close();
+});

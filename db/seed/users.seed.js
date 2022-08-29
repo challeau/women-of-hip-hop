@@ -1,22 +1,28 @@
 // Iteration #1
 const mongoose = require("mongoose");
 const User = require("../../server/models/User.model");
+const bcrypt = require("bcryptjs");
 
+const password = "dev-test-password";
+const hashedPassword = bcrypt.hashSync(password, 10);
 const MONGO_URI =
   process.env.MONGODB_URI || "mongodb://localhost/women-of-hip-hop";
 
 const users = [
   {
     username: "dev-test",
-    password: "dev-test-password",
+    password: hashedPassword,
+    role: "admin",
   },
   {
     username: "meryem",
-    password: "meryempassword",
+    password: hashedPassword,
+    role: "admin",
   },
   {
     username: "charlotte",
-    password: "charlottepassword",
+    password: hashedPassword,
+    role: "admin",
   },
 ];
 
