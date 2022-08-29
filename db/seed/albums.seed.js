@@ -1,0 +1,95 @@
+const mongoose = require("mongoose");
+const Album = require("../../server/models/Album.model.js");
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/women-of-hip-hop";
+
+const albums = [
+  {
+    name: "Pink Friday",
+    picture:
+      "https://urbanislandz.com/wp-content/uploads/2010/10/Nicki-Minaj-Pink-Friday-Album-Cover1.jpg",
+    songs: [
+      "I'm The Best",
+      "Roman's Revenge (featuring Eminem)",
+      "Did It On 'Em",
+      "Right Thru Me",
+      "Fly (featuring Rihanna)",
+      "Save Me",
+      "Moment 4 Life (featuring Drake)",
+      "Check It Out (featuring will.i.am)",
+      "Blazin (featuring Kanye West)",
+      "Here I Am",
+      "Dear Old Nicki",
+      "Your Love",
+      "Last Chance (featuring Natasha Bedingfield)",
+      "Super Bass",
+      " Blow Ya Mind",
+      "Muny",
+      "Girls Fall Like Dominoes [Bonus Track]",
+    ],
+    features: [
+      "Eminem",
+      "Rihanna",
+      "Drake",
+      "will.i.am",
+      "Kanye West",
+      "Natasha Bedingfield",
+    ],
+  },
+  {
+    name: "Traumazine",
+    picture:
+      "https://cdn-www.konbini.com/files/2022/08/Megan-Thee-Stallion-Traumazine.jpg",
+    songs: [
+      "NDA",
+      "Ungrateful feat. Key Glock",
+      "Not Nice",
+      "Budget feat. Latto",
+      "Her",
+      "Gift & Curse",
+      "Ms. Nasty",
+      "Who Me feat. Pooh Shiesty",
+      "Red Wine",
+      "Scary feat. Rico Nasty",
+      "Anxiety",
+      "Flip Flop",
+      "Consistency feat. Jhené Aiko",
+      "Star feat. Lucky Daye",
+      "Pressurelicious feat. Future",
+      "Plan B",
+      "Southside Royalty Freestyle feat. Sauce Walka, Big Pokey, and Lil Keke",
+      "Sweetest Pie feat. Dua Lipa",
+    ],
+    features: [
+      "Key Glock",
+      "Latto",
+      "Pooh Shiesty",
+      "Rico Nasty",
+      "Jhené Aiko",
+      "Lucky Daye",
+      "Future",
+      "Sauce Walka",
+      "Big Pokey",
+      "Lil Keke",
+      "Dua Lipa",
+    ],
+  },
+];
+
+mongoose
+  .connect(MONGO_URI)
+  .then((x) => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+  })
+  .catch((err) => {
+    console.error("Error connecting to mongo: ", err);
+  });
+const seedAlbum = async () => {
+  await Album.deleteMany({});
+  await Album.insertMany(albums);
+};
+seedAlbum().then(() => {
+  mongoose.connection.close();
+});
