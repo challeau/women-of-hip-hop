@@ -1,9 +1,10 @@
-// We reuse this import in order to have access to the `body` property in requests
 const express = require('express')
 
-// ℹ️ Responsible for the messages you see in the terminal as requests are coming in
-// https://www.npmjs.com/package/morgan
+// messages in the terminal as requests are coming in
 const logger = require('morgan')
+
+// cookies for authentication
+const cookieParser = require("cookie-parser");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -13,4 +14,5 @@ module.exports = (app) => {
   // To have access to `body` property in the request
   app.use(express.json())
   app.use(express.urlencoded({ extended: false }))
+  app.use(cookieParser());
 }

@@ -18,12 +18,23 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// get one artist by id
+router.get("/:artistId", async (req, res, next) => {
+  try {
+    const artist = await Artist.findById(req.params.artistId);
+    res.status(200).json(artist);
+  } catch (error) {
+    next(error.message);
+  }
+});
+
 // get one artist at random
 router.get("/shuffle", async (req, res, next) => {
   try {
     const artists = await Artist.find({});
     const oneArtist = artists[await getRandomIndex()];
-    if (oneArtist.albums.length > 0) oneArtist = oneArtist.populate("album");
+    if (oneArtist.albums.length > 0)
+      oneArtist = oneArtist.populate("album");
     res.status(200).json(oneArtist);
   } catch (error) {
     next(error.message);
@@ -31,20 +42,19 @@ router.get("/shuffle", async (req, res, next) => {
 });
 
 // add artist to db
-router.post('/', isAuthenticated, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const { name, picture, miniBio, albums, flagSong } = req.body;
     const creatorId = req.user.id;
-    console.log(creatorId);
-//    const artist = await Artist.create(req.body);
-    res.status(201)//.json(oneArtist);
+    const artist = await Artist.create({name, picture, miniBio, albums, flagSong, creatorId});
+    res.status(201).json(artist);
   } catch (error) {
     next(error.message);
   }
 });
 
 // delete artist from db
-router.delete("/:artistId", canEdit, async (req, res, next) => {
+router.delete("/:artistId", isAuthenticated, canEdit, async (req, res, next) => {
   try {
     const id = req.params.artistId;
     if (!mongoose.isValidObjectId(id))

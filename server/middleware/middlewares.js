@@ -20,10 +20,10 @@ const isAuthenticated = async (req, res, next) => {
 };
 
 const canEdit = (req, res, next) => {
+  console.log(req.user);
   if (req.user.role === "admin") {
     next();
   } else {
-    console.log(req);
     return res.status(401).json({ message: "Sorry you're not allowed to do that !" });
   }
 };
