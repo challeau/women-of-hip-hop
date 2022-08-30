@@ -33,10 +33,11 @@ router.get("/shuffle", async (req, res, next) => {
 // add artist to db
 router.post('/', isAuthenticated, async (req, res, next) => {
   try {
-    console.log(req.body);
-    // const { name, picture, miniBio, albums, flagSong } = req.body;
-    const artist = await Artist.create(req.body);
-    res.status(201).json(oneArtist);
+    const { name, picture, miniBio, albums, flagSong } = req.body;
+    const creatorId = req.user.id;
+    console.log(creatorId);
+//    const artist = await Artist.create(req.body);
+    res.status(201)//.json(oneArtist);
   } catch (error) {
     next(error.message);
   }

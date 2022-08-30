@@ -7,7 +7,6 @@ const salt = 10;
 const { isAuthenticated } = require("../middleware/middlewares");
 
 router.post("/signup", async (req, res, next) => {
-  console.log(req.body);
   const { username, password } = req.body;
   if (!password || !username) {
     return res
