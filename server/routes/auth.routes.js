@@ -47,10 +47,10 @@ router.post("/login", async (req, res, next) => {
     }
 
     const payload = { username };
-    console.log(process.env.TOKEN_SECRET)
-    const token = jsonWebToken.sign(payload, process.env.TOKEN_SECRET, {
+    const tokenSecret = `${process.env.TOKEN_SECRET}`;
+    const token = jsonWebToken.sign(payload, tokenSecret, {
       algorithm: "HS256",
-      expiresIn: "1h",
+      expiresIn: "1000h",
     });
     res.status(200).json(token);
   } catch (error) {
