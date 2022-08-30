@@ -7,10 +7,6 @@ npm-debug.log
 # Environment Variables should NEVER be published
 .env
 
-# added for maintainance purposes - not best  practice
-package-lock.json 
-#package.json 
-
 # emacs files
 *\~
 \#*
