@@ -1,0 +1,31 @@
+{
+  "name": "women-of-hip-hop",
+  "version": "1.0.0",
+  "description": "> An Express app and MongoDB database of female rappers. Our goal is to help people discover loud artists and promote their relevance on the scene. For a mature audience :) > <br/>",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/server.js",
+    "dev": "nodemon ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/challeau/women-of-hip-hop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/challeau/women-of-hip-hop/issues"
+  },
+  "homepage": "https://github.com/challeau/women-of-hip-hop#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.19"
+  }
+}
