@@ -9,6 +9,7 @@ const { isAuthenticated } = require("./middleware/middlewares.js");
 // require('./error-handling')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
+require("dotenv").config();
 require("./config")(app);
 
 // Connect to the database
