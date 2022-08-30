@@ -26,7 +26,7 @@ router.post("/", canEdit, async (req, res, next) => {
 });
 
 //update albums
-router.patch("/:albumsId", async (req, res, next) => {
+router.patch("/:albumsId", canEdit, async (req, res, next) => {
   try {
     const albumToUpdate = req.body;
     const { albumsId } = req.params;
@@ -44,13 +44,13 @@ router.patch("/:albumsId", async (req, res, next) => {
 });
 
 //delete albums
-router.delete("/:albumId", canEdit, async (req, res, next) => {
+router.delete("/:albumsId", canEdit, async (req, res, next) => {
   try {
-    await Album.findByIdAndDelete(req.params.id);
-    return res.sendStatus(204);
+    await Album.findByIdAndDelete(req.params.albumsId);
+    res.status(204).json(`album deleted`);
   } catch (error) {
     next(error.message);
   }
-});
+}); 
 
 module.exports = router;
