@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Album = require("../../server/models/Album.model.js");
-const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/women-of-hip-hop";
 
 const albums = [
   {
@@ -76,20 +74,4 @@ const albums = [
   },
 ];
 
-mongoose
-  .connect(MONGO_URI)
-  .then((x) => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
-  })
-  .catch((err) => {
-    console.error("Error connecting to mongo: ", err);
-  });
-const seedAlbum = async () => {
-  await Album.deleteMany({});
-  await Album.insertMany(albums);
-};
-seedAlbum().then(() => {
-  mongoose.connection.close();
-});
+module.exports = albums;
