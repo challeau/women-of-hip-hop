@@ -4,8 +4,6 @@ const jsonWebToken = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const salt = 10;
 
-const { isAuthenticated } = require("../middleware/middlewares");
-
 router.post("/signup", async (req, res, next) => {
   const { username, password } = req.body;
   if (!password || !username) {
@@ -23,6 +21,16 @@ router.post("/signup", async (req, res, next) => {
     };
     const createdUser = await User.create(newUser);
     res.status(201).json(createdUser);
+  } catch (error) {
+    next(error.message);
+  }
+});
+
+//get all users
+router.get("/users", async (req, res, next) => {
+  try {
+    const allUsers = await User.find();
+    return res.status(200).json(allUsers);
   } catch (error) {
     next(error.message);
   }

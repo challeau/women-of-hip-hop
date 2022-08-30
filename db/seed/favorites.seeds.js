@@ -21,7 +21,7 @@ const seedFavorites = async () => {
   const allArtists = await Artist.find();
   const allUser = await User.find();
   await Favorite.deleteMany({});
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 2; i++) {
     const favorite = {
       user_id: getRandomFrom(allUser),
       artist_id: getRandomFrom(allArtists),
