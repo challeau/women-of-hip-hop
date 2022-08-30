@@ -8,6 +8,7 @@ const favoriteSchema = new Schema({
   artist_id: {
     type: Schema.Types.ObjectId,
     ref: "Artist",
+    unique: true,
   },
 });
 
