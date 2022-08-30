@@ -3,6 +3,7 @@ const User = require("../models/User.model");
 
 const isAuthenticated = async (req, res, next) => {
   let token = req.headers.authorization;
+  console.log(token)
   if (!token) {
     return res.status(400).json({ message: "No token found!" });
   }

@@ -32,11 +32,11 @@ router.get('/shuffle', async (req, res, next) => {
 });
 
 // add artist to db
-router.post('/', async (req, res, next) => {
+router.post('/', isAuthenticated, async (req, res, next) => {
   try {
+    console.log(req.body);
     // const { name, picture, miniBio, albums, flagSong } = req.body;
     const artist = await Artist.create(req.body);
-    artist.creatorId = req.user._id;
     res.status(201).json(oneArtist);
   } catch (error){
     next(error.message);
@@ -50,7 +50,7 @@ router.delete('/:artistId', canEdit, async (req, res, next) => {
     if (!mongoose.isValidObjectId(id))
       throw({ message: 'Please provide a valid Id' });
     await Artist.findByIdAndDelete(req.params.id);
-    res.sendStatus(204).json({204});
+    res.sendStatus(204).json({status: 204});
   } catch (error){
     next(error.message);
   }
