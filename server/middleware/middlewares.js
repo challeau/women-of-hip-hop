@@ -27,6 +27,8 @@ const canEdit = async (req, res, next) => {
     let artist = await Artist.findById(req.params.artistId);
     if (String(req.user._id) === String(artist.creatorId))
       next();
+    else
+      throw ();
   } catch (error){
     res.status(401).json({ message: "Sorry you're not allowed to do that !" + error.message});
   }
