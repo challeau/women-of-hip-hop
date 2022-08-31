@@ -1,13 +1,9 @@
-const mongoose = require("mongoose");
-const Favorite = require("../../server/models/Favorite.model.js");
-const Artist = require("./../../server/models/Artist.model");
-const User = require("./../../server/models/User.model");
-const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/women-of-hip-hop";
+
 
 const favorites = [];
 
-mongoose
+
+/* mongoose
   .connect(MONGO_URI)
   .then((x) => {
     console.log(
@@ -37,3 +33,6 @@ seedFavorites().then(() => {
 function getRandomFrom(array) {
   return array[Math.floor(Math.random() * array.length)]._id;
 }
+ */
+
+module.exports = favorites;

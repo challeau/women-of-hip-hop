@@ -35,4 +35,5 @@ app.use("/favorites", isAuthenticated, favorites);
 const albums = require("./routes/albums.routes");
 app.use("/albums", isAuthenticated, albums);
 
+
 module.exports = app;
