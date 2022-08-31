@@ -9,14 +9,14 @@ const Favorite = require("../server/models/Favorite.model");
 const FavoriteSeed = require("./seed/favorites.seed");
 
 
-// external vars
+// External vars
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../server/.env') });
 const mongoose = require("mongoose");
 const MONGO_URI =
   process.env.MONGODB_URI || "mongodb://localhost/women-of-hip-hop";
 
-// open connection to db
+// Open connection to db
 async function openConnection() {
   try {
     console.log(`Connecting to database @ ${MONGO_URI}`);
@@ -37,10 +37,9 @@ async function seedInit(model, seedFile) {
 async function seedDatabase() {
   try {
     await openConnection();
-    console.log('seeding?');
     const doit = `${process.env.ISSEEDED}`;
     if (doit === 'false') {
-      console.log('Prepping to seed');
+      console.log('Seeding....');
       const seeds = [
 	{ model: User, file: UserSeed },
 	{ model: Artist, file: ArtistSeed },
@@ -48,7 +47,6 @@ async function seedDatabase() {
 	{ model: Favorite, file: FavoriteSeed },
       ];
       for (const seed of seeds){
-	console.log('Seeding....');
 	await seedInit(seed.model, seed.file);
       }
       process.env.ISSEEDED = true;
