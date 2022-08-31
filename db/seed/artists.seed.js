@@ -2,6 +2,7 @@ const User = require("../../server/models/User.model.js");
 
 async function getCreatorId() {
   const user = await User.findOne();
+  console.log(`>>>>>> ${user.id}`);
   return (user.id);
 }
 
