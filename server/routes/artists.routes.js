@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const ObjectId = require('mongoose').Types.ObjectId;
 const Artist = require("../models/Artist.model.js");
 const User = require("../models/User.model.js");
 const { isAuthenticated, canEdit } = require("../middleware/middlewares.js");
@@ -57,9 +58,10 @@ router.post('/', async (req, res, next) => {
 router.delete("/:artistId", isAuthenticated, canEdit, async (req, res, next) => {
   try {
     const id = req.params.artistId;
-    if (!mongoose.isValidObjectId(id))
+    if (ObjectId.isValid(id) === false)
       throw { message: "Please provide a valid Id" };
     await Artist.findByIdAndDelete(req.params.id);
+    res.status(204).json({message: "Artist was deleted."})
   } catch (error) {
     next(error.message);
   }

@@ -7,6 +7,7 @@ const artists = [
       "Onika Tanya Maraj-Petty, known professionally as Nicki Minaj, is a Trinidadian-born rapper, singer, and songwriter. She is known for her musical versatility, sharp lyrics, animated flow in her rapping, and her alter egos and accents.",
     albums: [],
     flagSong: "https://www.youtube.com/watch?v=4JipHEz53sU",
+    creatorId: '0'
   },
   {
     name: "Megan Thee Stallion",
@@ -16,6 +17,7 @@ const artists = [
       "Megan Jovon Ruth Pete, known professionally as Megan Thee Stallion, is an American rapper. Originally from Houston, Texas, she first garnered attention when videos of her freestyling became popular on social media platforms such as Instagram.",
     albums: [],
     flagSong: "https://www.youtube.com/watch?v=lEIqjoO0-Bs",
+    creatorId: '0'
   },
   {
     name: "Lauryn Hill",
@@ -25,6 +27,7 @@ const artists = [
       "Lauryn Noelle Hill is an American rapper, singer, songwriter, and actress. She is often regarded as one of the greatest rappers of all time, as well as being one of the most influential musicians of her generation.",
     albums: [],
     flagSong: "https://www.youtube.com/watch?v=cE-bnWqLqxE",
+    creatorId: '0'
   },
 ];
 
