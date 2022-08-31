@@ -60,7 +60,7 @@ router.delete("/:artistId", isAuthenticated, canEdit, async (req, res, next) => 
     const id = req.params.artistId;
     if (ObjectId.isValid(id) === false)
       throw { message: "Please provide a valid Id" };
-    await Artist.findByIdAndDelete(req.params.id);
+    await Artist.findByIdAndDelete(id);
     res.status(204).json({message: "Artist was deleted."})
   } catch (error) {
     next(error.message);
