@@ -1,3 +1,4 @@
+const ObjectId = require('mongoose').Types.ObjectId;
 const jsonWebToken = require("jsonwebtoken");
 const User = require("../models/User.model");
 const Artist = require("../models/Artist.model");
@@ -24,7 +25,10 @@ const canEdit = async (req, res, next) => {
   try {
     if (req.user.role === "admin")
       next();
-    let artist = await Artist.findById(req.params.artistId);
+    const id = req.params.artistId;
+    if (ObjectId.isValid(id) === false)
+      throw ({ message: "Please provide a valid Id" });
+    const artist = await Artist.findById(req.params.artistId);
     if (String(req.user._id) === String(artist.creatorId))
       next();
     else
