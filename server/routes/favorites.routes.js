@@ -1,9 +1,8 @@
 const router = require("express").Router();
 const Favorite = require("../models/Artist.model.js");
-const { canEdit } = require("../middleware/middlewares.js");
 
 //get favorites
-router.get("/", canEdit, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const favorites = await Favorite.find().populate("artists");
     return res.status(200).json(favorites);
