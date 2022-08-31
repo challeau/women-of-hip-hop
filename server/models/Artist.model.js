@@ -1,34 +1,34 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const artistSchema = new Schema({
-  'name': {
+  name: {
     type: String,
     unique: true,
-    required: [true, 'Please provide the artist\'s name.']
+    required: [true, "Please provide the artist's name."],
   },
-  'picture': {
+  picture: {
     type: String,
-    required: [true, 'Please provide a link to the artist\'s picture.']
+    required: [true, "Please provide a link to the artist's picture."],
   },
-  'miniBio': {
+  miniBio: {
     type: String,
-    required: [true, 'Please provide a bio of the artist.']
+    required: [true, "Please provide a bio of the artist."],
   },
-  'albums': {
+  albums: {
     type: [Schema.Types.ObjectId],
-    ref: 'Album',
-    required: [true, 'Please provide a list of albums.']
+    ref: "Album",
+    required: [true, "Please provide a list of albums."],
   },
-  'flagSong': {
+  flagSong: {
     type: String,
-    required: [true, 'Please provide a link to one of the artist\'s songs.']
+    required: [true, "Please provide a link to one of the artist's songs."],
   },
-  'creatorId': {
+  creatorId: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-  }
+    ref: "User",
+  },
 });
 
-const Artist = model('Artist', artistSchema);
+const Artist = model("Artist", artistSchema);
 
 module.exports = Artist;

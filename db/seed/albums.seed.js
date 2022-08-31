@@ -33,6 +33,7 @@ const albums = [
       "Kanye West",
       "Natasha Bedingfield",
     ],
+    creatorId: 1,
   },
   {
     name: "Traumazine",
@@ -71,6 +72,7 @@ const albums = [
       "Lil Keke",
       "Dua Lipa",
     ],
+    creatorId: 2,
   },
 ];
 
