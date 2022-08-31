@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
 const Album = require("../../server/models/Album.model.js");
+const User = require("../../server/models/User.model.js");
+
+async function getCreatorId() {
+  const user = await User.findOne();
+  return (user.id);
+}
 
 const albums = [
   {
@@ -33,7 +39,7 @@ const albums = [
       "Kanye West",
       "Natasha Bedingfield",
     ],
-    creatorId: 1,
+    creatorId: getCreatorId(),
   },
   {
     name: "Traumazine",
@@ -72,7 +78,7 @@ const albums = [
       "Lil Keke",
       "Dua Lipa",
     ],
-    creatorId: 2,
+    creatorId: getCreatorId(),
   },
 ];
 

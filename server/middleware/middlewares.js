@@ -2,6 +2,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const jsonWebToken = require("jsonwebtoken");
 const User = require("../models/User.model");
 const Artist = require("../models/Artist.model");
+const Album = require("../models/Artist.model");
 
 const isAuthenticated = async (req, res, next) => {
   try {
@@ -24,16 +25,17 @@ const isAuthenticated = async (req, res, next) => {
 // checks for allowed crud operations
 const canEdit = async (req, res, next) => {
   try {
-    console.log(req);
+    console.log("HELLO", ObjectId.isValid(0));
     if (req.user.role === "admin")	// admins have full powers
       return next();
     else if (String(req.user.id) === String(req.params.requestId))	// for user-based operations
       return next();
-    const id = req.params.artist.requestId;
+    const id = req.params.requestId;
     if (ObjectId.isValid(id) === false)
       throw ({ message: "Please provide a valid Id" });
-    const artist = await Artist.findById(id);
-    if (String(id) === String(artist.creatorId))	// for artist-based operations 
+    const requestObj = await Artist.findById(id) ?? await Album.findById(id);
+    console.log(requestObj);
+    if (String(id) === String(requestObj.creatorId))	// for artist-based operations 
       return next();
     else
       throw ({message: "You cannot edit an artist you didn't create."});
