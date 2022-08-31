@@ -28,7 +28,7 @@ async function openConnection() {
 
 // Seeds data from the seedfile provided
 async function seedInit(model, seedFile) {
-  await model.deleteMany();
+  await model.deleteMany({});
   const documents = await model.insertMany(seedFile);
   console.log(`Seeded ${documents.length} documents.`);
 }

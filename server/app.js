@@ -13,7 +13,7 @@ require("dotenv").config();
 require("./config")(app);
 
 // Connect to the database
-require("../db/index")();
+require("../db/index");
 
 // Routing
 const index = require("./routes/index.routes");
