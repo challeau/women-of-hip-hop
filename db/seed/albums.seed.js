@@ -1,9 +1,4 @@
-const User = require("../../server/models/User.model.js");
-
-async function getCreatorId() {
-  const user = await User.findOne();
-  return (user.id);
-}
+const ObjectID = require('mongodb').ObjectID;
 
 const albums = [
   {
@@ -37,7 +32,7 @@ const albums = [
       "Kanye West",
       "Natasha Bedingfield",
     ],
-    creatorId: getCreatorId(),
+    creatorId: new ObjectID("0")
   },
   {
     name: "Traumazine",
@@ -76,7 +71,7 @@ const albums = [
       "Lil Keke",
       "Dua Lipa",
     ],
-    creatorId: getCreatorId(),
+    creatorId: new ObjectID("0")    
   },
 ];
 
