@@ -37,6 +37,7 @@ async function seedInit(model, seedFile) {
 async function seedDatabase() {
   try {
     await openConnection();
+    console.log('seeding?');
     const doit = `${process.env.ISSEEDED}`;
     if (doit === 'false') {
       console.log('Prepping to seed');
