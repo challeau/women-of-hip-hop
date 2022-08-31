@@ -79,9 +79,9 @@ router.post("/login", async (req, res, next) => {
 });
 
 //delete user
-router.delete("/:userId", canEdit, async (req, res, next) => {
+router.delete("/:requestId", canEdit, async (req, res, next) => {
   try {
-    await User.findByIdAndDelete(req.params.userId);
+    await User.findByIdAndDelete(req.params.requestId);
     res.status(204).json(`user deleted`);
   } catch (error) {
     next(error.message);

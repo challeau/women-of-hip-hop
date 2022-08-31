@@ -54,9 +54,9 @@ router.post('/', async (req, res, next) => {
 });
 
 // delete artist from db
-router.delete("/:artistId", isAuthenticated, canEdit, async (req, res, next) => {
+router.delete("/:requestId", isAuthenticated, canEdit, async (req, res, next) => {
   try {
-    const id = req.params.artistId;
+    const id = req.params.requestId;
     await Artist.findByIdAndDelete(id);
     res.status(204).json({message: "Artist was deleted."})
   } catch (error) {
