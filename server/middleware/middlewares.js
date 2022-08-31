@@ -1,5 +1,6 @@
 const jsonWebToken = require("jsonwebtoken");
 const User = require("../models/User.model");
+const Artist = require("../models/Artist.model");
 
 const isAuthenticated = async (req, res, next) => {
   try {
@@ -19,12 +20,15 @@ const isAuthenticated = async (req, res, next) => {
   next();
 };
 
-const canEdit = (req, res, next) => {
-  console.log(req.user);
-  if (req.user.role === "admin") {
-    next();
-  } else {
-    return res.status(401).json({ message: "Sorry you're not allowed to do that !" });
+const canEdit = async (req, res, next) => {
+  try {
+    if (req.user.role === "admin")
+      next();
+    let artist = await Artist.findById(req.params.artistId);
+    if (String(req.user._id) === String(artist.creatorId))
+      next();
+  } catch (error){
+    res.status(401).json({ message: "Sorry you're not allowed to do that !" + error.message});
   }
 };
 
