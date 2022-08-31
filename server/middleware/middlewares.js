@@ -24,13 +24,13 @@ const isAuthenticated = async (req, res, next) => {
 const canEdit = async (req, res, next) => {
   try {
     if (req.user.role === "admin")
-      next();
+      return next();
     const id = req.params.artistId;
     if (ObjectId.isValid(id) === false)
       throw ({ message: "Please provide a valid Id" });
     const artist = await Artist.findById(id);
     if (String(id) === String(artist.creatorId))
-      next();
+      return next();
     else
       throw ({message: "You cannot edit an artist you didn't create."});
   } catch (error){
