@@ -4,7 +4,7 @@ async function getCreatorId() {
   try {
     const user = await User.findOne();
     console.log(user);
-    return (usr.id);
+    return (user.id);
   } catch (error){
     return (null);
   }
