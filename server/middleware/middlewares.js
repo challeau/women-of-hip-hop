@@ -28,7 +28,7 @@ const canEdit = async (req, res, next) => {
     if (String(req.user._id) === String(artist.creatorId))
       next();
     else
-      throw ();
+      throw ({message: "You cannot edit an artist you didn't create."});
   } catch (error){
     res.status(401).json({ message: "Sorry you're not allowed to do that !" + error.message});
   }
