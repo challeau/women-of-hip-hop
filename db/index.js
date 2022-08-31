@@ -50,7 +50,6 @@ async function seedDatabase() {
 	await seedInit(seed.model, seed.file);
       }
       process.env.ISSEEDED = true;
-      console.log(process.env.ISSEEDED);
     }
   } catch (error) {
     console.log(error.message);

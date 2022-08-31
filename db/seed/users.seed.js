@@ -15,7 +15,7 @@ const users = [
     role: "admin",
   },
   {
-    username: "charlotte",
+    username: "CHARLOTTE",
     password: hashedPassword,
     role: "admin",
   },
