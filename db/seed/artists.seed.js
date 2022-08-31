@@ -1,7 +1,7 @@
 const User = require("../../server/models/User.model.js");
 
 async function getCreatorId() {
-  await const user = User.findOne();
+  const user = User.findOne();
   return (user.id);
 }
 
