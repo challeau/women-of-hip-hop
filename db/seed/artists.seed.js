@@ -1,8 +1,13 @@
 const User = require("../../server/models/User.model.js");
 
 async function getCreatorId() {
-  const user = User.findOne();
-  return (user.id);
+  try {
+    const user = await User.findOne();
+    console.log(user);
+    return (usr.id);
+  } catch (error){
+    return (null);
+  }
 }
 
 const artists = [
