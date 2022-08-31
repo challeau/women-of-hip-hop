@@ -28,8 +28,8 @@ const canEdit = async (req, res, next) => {
     const id = req.params.artistId;
     if (ObjectId.isValid(id) === false)
       throw ({ message: "Please provide a valid Id" });
-    const artist = await Artist.findById(req.params.artistId);
-    if (String(req.user._id) === String(artist.creatorId))
+    const artist = await Artist.findById(id);
+    if (String(id) === String(artist.creatorId))
       next();
     else
       throw ({message: "You cannot edit an artist you didn't create."});
