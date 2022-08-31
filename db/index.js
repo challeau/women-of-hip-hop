@@ -59,4 +59,4 @@ async function seedDatabase() {
 
 seedDatabase();
 
-module.exports = openConnection;
+module.exports = seedDatabase;
