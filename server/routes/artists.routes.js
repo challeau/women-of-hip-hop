@@ -57,9 +57,8 @@ router.post('/', async (req, res, next) => {
 router.delete("/:artistId", isAuthenticated, canEdit, async (req, res, next) => {
   try {
     const id = req.params.artistId;
-    if (!mongoose.isValidObjectId(id))
-      throw { message: "Please provide a valid Id" };
-    await Artist.findByIdAndDelete(req.params.id);
+    await Artist.findByIdAndDelete(id);
+    res.status(204).json({message: "Artist was deleted."})
   } catch (error) {
     next(error.message);
   }
