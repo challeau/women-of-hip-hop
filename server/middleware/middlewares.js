@@ -30,7 +30,7 @@ const canEdit = async (req, res, next) => {
     else
       throw ({message: "You cannot edit an artist you didn't create."});
   } catch (error){
-    res.status(401).json({ message: "Sorry you're not allowed to do that !" + error.message});
+    res.status(401).json({ message: `Sorry you're not allowed to do that ! ${error.message}`});
   }
 };
 
