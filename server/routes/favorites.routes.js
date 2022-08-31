@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Favorite = require("../models/Artist.model.js");
+const Favorite = require("../models/Favorite.model.js");
 
 //get favorites
 router.get("/", async (req, res, next) => {
