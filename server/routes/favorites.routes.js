@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const favorite = await req.body;
-    const newFavorite = await Favorite.add(favorite);
+    const newFavorite = await Favorite.create(favorite);
     return res.status(201).json(newFavorite);
   } catch (error) {
     next(error.message);
