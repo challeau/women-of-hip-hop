@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-const Album = require("../../server/models/Album.model.js");
 const User = require("../../server/models/User.model.js");
 
 async function getCreatorId() {
