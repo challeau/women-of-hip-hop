@@ -1,20 +1,24 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const albumSchema = new Schema({
-  'name': {
+  name: {
     type: String,
-    required: [true, 'Please provide the album\'s name.']
+    required: [true, "Please provide the album's name."],
   },
-  'picture': {
+  picture: {
     type: String,
-    required: [true, 'Please provide a link to the album\'s picture.']
+    required: [true, "Please provide a link to the album's picture."],
   },
-  'songs': {
+  songs: {
     type: [String],
-    required: [true, 'Please provide the songs of the album.']
-  }
+    required: [true, "Please provide the songs of the album."],
+  },
+  creatorId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
-const Album = model('Album', albumSchema);
+const Album = model("Album", albumSchema);
 
 module.exports = Album;
