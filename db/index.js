@@ -52,7 +52,6 @@ async function seedDatabase() {
       }
       process.env.ISSEEDED = true;
     }
-    await mongoose.disconnect();
   } catch (error) {
     console.log(error.message);
   }
