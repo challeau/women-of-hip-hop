@@ -3,8 +3,8 @@ const User = require("../../server/models/User.model.js");
 async function getCreatorId() {
   try {
     const user = await User.findOne();
-    console.log(user);
-    return (user.id);
+    console.log(user._id);
+    return user._id;
   } catch (error){
     return (null);
   }
