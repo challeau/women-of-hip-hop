@@ -1,9 +1,11 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
+const { canEdit } = require("../middleware/middlewares.js");
 const jsonWebToken = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const salt = 10;
 
+//create user/signup
 router.post("/signup", async (req, res, next) => {
   const { username, password } = req.body;
   if (!password || !username) {
@@ -36,6 +38,17 @@ router.get("/users", async (req, res, next) => {
   }
 });
 
+//get user by ID
+router.get("/:userId", async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    res.status(200).json(user);
+  } catch (error) {
+    next(error.message);
+  }
+});
+
+//login
 router.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -62,6 +75,16 @@ router.post("/login", async (req, res, next) => {
     res.status(200).json(token);
   } catch (error) {
     next(error);
+  }
+});
+
+//delete user
+router.delete("/:userId", canEdit, async (req, res, next) => {
+  try {
+    await User.findByIdAndDelete(req.params.userId);
+    res.status(204).json(`user deleted`);
+  } catch (error) {
+    next(error.message);
   }
 });
 
