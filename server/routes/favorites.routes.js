@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
 });
 
 //add favorite
-router.post("/:favoriteId", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const favorite = await req.body;
     const newFavorite = await Favorite.add(favorite);
