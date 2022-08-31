@@ -5,7 +5,7 @@ const { canEdit } = require("../middleware/middlewares.js");
 //get favorites
 router.get("/", canEdit, async (req, res, next) => {
   try {
-    const favorites = await Favorite.find();
+    const favorites = await Favorite.find().populate("artists");
     return res.status(200).json(favorites);
   } catch (error) {
     next(error.message);
@@ -13,7 +13,7 @@ router.get("/", canEdit, async (req, res, next) => {
 });
 
 //add favorite
-router.post("/:favoriteId", canEdit, async (req, res, next) => {
+router.post("/:favoriteId", async (req, res, next) => {
   try {
     const favorite = await req.body;
     const newFavorite = await Favorite.add(favorite);
@@ -24,7 +24,7 @@ router.post("/:favoriteId", canEdit, async (req, res, next) => {
 });
 
 //delete favorite
-router.delete("/:favoriteId", canEdit, async (req, res, next) => {
+router.delete("/:favoriteId", async (req, res, next) => {
   try {
     await Favorite.findByIdAndDelete(req.params.favoriteId);
     res.status(204).json(`favorite deleted`);
