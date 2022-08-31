@@ -26,9 +26,9 @@ const canEdit = async (req, res, next) => {
   try {
     if (req.user.role === "admin")	// admins have full powers
       return next();
-    else if (String(req.user.id) === String(req.params.id))	// for user-based operations
+    else if (String(req.user.id) === String(req.params.requestId))	// for user-based operations
       return next();
-    const id = req.params.artistId;
+    const id = req.params.artist.requestId;
     if (ObjectId.isValid(id) === false)
       throw ({ message: "Please provide a valid Id" });
     const artist = await Artist.findById(id);
