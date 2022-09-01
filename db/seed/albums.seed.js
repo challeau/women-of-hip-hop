@@ -24,7 +24,7 @@ const albums = [
       "Muny",
       "Girls Fall Like Dominoes [Bonus Track]",
     ],
-    artist: "Nicky Minaj",
+    artist: "Nicki Minaj",
     creatorId: new ObjectID(0)
   },
   {
