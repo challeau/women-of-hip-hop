@@ -4,7 +4,7 @@
 > An Express app and MongoDB database of female rappers. Our goal is to help people discover loud artists and promote their relevance on the scene. For a mature audience :)
 
 
-Heroku app: https://women-of-hip-hop.herokuapp.com/
+Heroku app: https://women-of-hip-hop.herokuapp.com/ <br/>
 Postman Documentation: https://documenter.getpostman.com/view/14414199/VUxPvSuV
 <br/>
 
