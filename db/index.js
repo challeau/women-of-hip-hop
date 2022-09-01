@@ -28,6 +28,13 @@ async function openConnection() {
 
 // Seeds data from the seedfile provided
 async function seedInit(model, seedFile) {
+  if (model instanceof Album){
+    const artists = await Artist.find().select({name: 1});
+    for (const album in seedFile){
+      const oneArtist = artists.find((artist) => album.artist === artist.name );
+      album.artist = oneArtist.id;
+    }
+  }
   await model.deleteMany({});
   const documents = await model.insertMany(seedFile);
   console.log(`Seeded ${documents.length} documents.`);
