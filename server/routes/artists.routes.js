@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Artist = require("../models/Artist.model.js");
 const User = require("../models/User.model.js");
-const { isAuthenticated, canEdit } = require("../middleware/middlewares.js");
+const { canEdit } = require("../middleware/middlewares.js");
 
 async function getRandomIndex() {
   const rand = Math.floor(Math.random() * (await Artist.count()));
@@ -19,7 +19,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // get one artist by id
-router.get("/:artistId", async (req, res, next) => {
+router.get("/find/:artistId", async (req, res, next) => {
   try {
     const artist = await Artist.findById(req.params.artistId);
     res.status(200).json(artist);
@@ -42,6 +42,7 @@ router.get("/shuffle", async (req, res, next) => {
 // add artist to db
 router.post('/', async (req, res, next) => {
   try {
+
     const { name, picture, miniBio, flagSong } = req.body;
     const creatorId = req.user.id;
     const artist = await Artist.create({name, picture, miniBio, flagSong, creatorId});
@@ -51,12 +52,28 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+// update artist
+router.patch("/:requestId", canEdit, async (req, res, next) => {
+  try {
+    const artistToUpdate = req.body;
+    const { requestId } = req.params;
+    const updatedArtist = await Artist.findByIdAndUpdate(
+      requestId,
+      artistToUpdate,
+      { new: true }
+    );
+    res.status(204).json(updatedArtist);
+  } catch (error) {
+    next(error.message);
+  }
+});
+
 // delete artist from db
-router.delete("/:requestId", isAuthenticated, canEdit, async (req, res, next) => {
+router.delete("/:requestId", canEdit, async (req, res, next) => {
   try {
     const id = req.params.requestId;
     await Artist.findByIdAndDelete(id);
-    res.status(204).json({message: "Artist was deleted."})
+    res.status(204).json({message: "Artist was deleted."});
   } catch (error) {
     next(error.message);
   }
