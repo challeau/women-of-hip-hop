@@ -15,9 +15,11 @@ router.get("/", async (req, res, next) => {
 //add favorite
 router.post("/", async (req, res, next) => {
   try {
-    const favorite = await req.body;
-    const id = await req.params.id;
-    const newFavorite = await Favorite.create(id, favorite);
+    const { artist_id } = req.body;
+    const newFavorite = await Favorite.create({
+      artist_id,
+      user_id: req.user.id,
+    });
     return res.status(201).json(newFavorite);
   } catch (error) {
     next(error.message);
