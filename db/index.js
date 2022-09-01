@@ -29,10 +29,10 @@ async function openConnection() {
 // Seeds data from the seedfile provided
 async function seedInit(model, seedFile) {
   if (model.collection.name === 'albums'){
-    const artists = await Artist.find().select({name: 1});
+    const artists = await Artist.find().select({name: 1, id: 1});
     for (const album in seedFile){
       const oneArtist = artists.find((artist) => album.artist === artist.name );
-      console.log(album.name, oneArtist.id);
+      console.log(album.name, oneArtist._id);
       album.artist = oneArtist.id;
     }
   }
