@@ -5,7 +5,7 @@ const Artist = require("../models/Artist.model.js");
 //get favorites
 router.get("/", async (req, res, next) => {
   try {
-    const favorites = await Favorite.find().populate("Artist");
+    const favorites = await Favorite.find().populate("artist_id");
     return res.status(200).json(favorites);
   } catch (error) {
     next(error.message);
