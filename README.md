@@ -2,6 +2,10 @@
 # WOMEN-OF-HIP-HOP
 
 > An Express app and MongoDB database of female rappers. Our goal is to help people discover loud artists and promote their relevance on the scene. For a mature audience :)
+
+
+Heroku app: https://women-of-hip-hop.herokuapp.com/
+Postman Documentation: https://documenter.getpostman.com/view/14414199/VUxPvSuV
 <br/>
 
 ## USER MODEL
@@ -69,9 +73,5 @@ The song will be loaded thanks to a youtube iFrame or the Spotify API if time al
 - seeding : 
 ``` bash
 sudo service mongod start
-node <seed.file>```
-
-
-## BONUS
-
-A cool frontend: black and gold, luxurious but minimalist.
+node <seed.file>
+```
