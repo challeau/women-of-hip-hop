@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
-const { canEdit } = require("../middleware/middlewares.js");
+const { canEdit, isAuthenticated } = require("../middleware/middlewares.js");
 const jsonWebToken = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const salt = 10;
@@ -79,13 +79,18 @@ router.post("/login", async (req, res, next) => {
 });
 
 //delete user
-router.delete("/:requestId", canEdit, async (req, res, next) => {
-  try {
-    await User.findByIdAndDelete(req.params.requestId);
-    res.status(204).json(`user deleted`);
-  } catch (error) {
-    next(error.message);
+router.delete(
+  "/:requestId",
+  isAuthenticated,
+  canEdit,
+  async (req, res, next) => {
+    try {
+      await User.findByIdAndDelete(req.params.requestId);
+      res.status(204).json(`user deleted`);
+    } catch (error) {
+      next(error.message);
+    }
   }
-});
+);
 
 module.exports = router;
