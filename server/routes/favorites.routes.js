@@ -3,9 +3,11 @@ const Favorite = require("../models/Favorite.model.js");
 const User = require("../models/User.model.js");
 
 //get favorites
-router.get("/", async (req, res, next) => {
+router.get("/:requestId", async (req, res, next) => {
   try {
-    const favorites = await Favorite.find().populate("artist_id");
+    const favorites = await Favorite.find({
+      user_id: req.params.requestId,
+    }).populate("artist_id");
     return res.status(200).json(favorites);
   } catch (error) {
     next(error.message);
@@ -20,11 +22,6 @@ router.post("/", async (req, res, next) => {
       artist_id,
       user_id: req.user.id,
     });
-    const user = await User.findByIdAndUpdate(req.user.id, {
-      $push: { favoriteArtist: newFavorite.id },
-    });
-    // console.log(user, newFavorite);
-    // user.favoriteArtist.push(newFavorite.id);
     return res.status(201).json(newFavorite);
   } catch (error) {
     next(error.message);
