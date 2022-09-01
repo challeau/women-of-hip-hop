@@ -15,10 +15,6 @@ const userSchema = new Schema({
     default: "https://pbs.twimg.com/media/FE-7qY8WUAATlNV.jpg",
   },
 
-  favoriteArtist: {
-    type: [Schema.Types.ObjectId],
-    ref: "User",
-  },
   role: {
     type: String,
     enum: ["admin"],

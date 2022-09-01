@@ -14,11 +14,6 @@ const artistSchema = new Schema({
     type: String,
     required: [true, "Please provide a bio of the artist."],
   },
-  albums: {
-    type: [Schema.Types.ObjectId],
-    ref: "Album",
-    required: [true, "Please provide a list of albums."],
-  },
   flagSong: {
     type: String,
     required: [true, "Please provide a link to one of the artist's songs."],

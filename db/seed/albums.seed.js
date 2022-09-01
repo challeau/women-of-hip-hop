@@ -24,14 +24,7 @@ const albums = [
       "Muny",
       "Girls Fall Like Dominoes [Bonus Track]",
     ],
-    features: [
-      "Eminem",
-      "Rihanna",
-      "Drake",
-      "will.i.am",
-      "Kanye West",
-      "Natasha Bedingfield",
-    ],
+    artist: "Nicki Minaj",
     creatorId: new ObjectID(0)
   },
   {
@@ -58,19 +51,7 @@ const albums = [
       "Southside Royalty Freestyle feat. Sauce Walka, Big Pokey, and Lil Keke",
       "Sweetest Pie feat. Dua Lipa",
     ],
-    features: [
-      "Key Glock",
-      "Latto",
-      "Pooh Shiesty",
-      "Rico Nasty",
-      "Jhené Aiko",
-      "Lucky Daye",
-      "Future",
-      "Sauce Walka",
-      "Big Pokey",
-      "Lil Keke",
-      "Dua Lipa",
-    ],
+    artist: "Megan Thee Stallion",
     creatorId: new ObjectID(0)    
   },
 ];

@@ -13,6 +13,11 @@ const albumSchema = new Schema({
     type: [String],
     required: [true, "Please provide the songs of the album."],
   },
+  artist: {
+    type: Schema.Types.ObjectId,
+    ref: "Artist",
+    required:  [true, "Please provide the main artist."]
+  },
   creatorId: {
     type: Schema.Types.ObjectId,
     ref: "User",

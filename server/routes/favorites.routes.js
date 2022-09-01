@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const Favorite = require("../models/Favorite.model.js");
-const Artist = require("../models/Artist.model.js");
+const User = require("../models/User.model.js");
 
 //get favorites
-router.get("/", async (req, res, next) => {
+router.get("/:requestId", async (req, res, next) => {
   try {
-    const favorites = await Favorite.find().populate("Artist");
+    const favorites = await Favorite.find({
+      user_id: req.params.requestId,
+    }).populate("artist_id");
     return res.status(200).json(favorites);
   } catch (error) {
     next(error.message);
@@ -15,8 +17,11 @@ router.get("/", async (req, res, next) => {
 //add favorite
 router.post("/", async (req, res, next) => {
   try {
-    const favorite = await req.body;
-    const newFavorite = await Favorite.create(favorite);
+    const { artist_id } = req.body;
+    const newFavorite = await Favorite.create({
+      artist_id,
+      user_id: req.user.id,
+    });
     return res.status(201).json(newFavorite);
   } catch (error) {
     next(error.message);
