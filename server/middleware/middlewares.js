@@ -2,7 +2,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const jsonWebToken = require("jsonwebtoken");
 const User = require("../models/User.model");
 const Artist = require("../models/Artist.model");
-const Album = require("../models/Artist.model");
+const Album = require("../models/Album.model");
 
 const isAuthenticated = async (req, res, next) => {
   try {
@@ -25,7 +25,6 @@ const isAuthenticated = async (req, res, next) => {
 // checks for allowed crud operations
 const canEdit = async (req, res, next) => {
   try {
-    console.log("HELLO", ObjectId.isValid(0));
     if (req.user.role === "admin")	// admins have full powers
       return next();
     else if (String(req.user.id) === String(req.params.requestId))	// for user-based operations
@@ -33,14 +32,13 @@ const canEdit = async (req, res, next) => {
     const id = req.params.requestId;
     if (ObjectId.isValid(id) === false)
       throw ({ message: "Please provide a valid Id" });
-    const requestObj = await Artist.findById(id) ?? await Album.findById(id);
-    console.log(requestObj);
-    if (String(id) === String(requestObj.creatorId))	// for artist-based operations 
+    let requestObj = await Artist.findById(id) ?? await Album.findById(id);
+    if (String(req.user.id) === String(requestObj.creatorId))	// for artist-based operations 
       return next();
     else
-      throw ({message: "You cannot edit an artist you didn't create."});
+      throw ({message: "You cannot edit an item you didn't create."});
   } catch (error){
-    res.status(401).json({ message: `Sorry you're not allowed to do that ! ${error.message}`});
+    return res.status(401).json({ message: `Sorry you're not allowed to do that ! ${error.message}`});
   }
 };
 
