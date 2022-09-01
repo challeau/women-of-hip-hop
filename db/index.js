@@ -32,6 +32,7 @@ async function seedInit(model, seedFile) {
     const artists = await Artist.find().select({name: 1});
     for (const album in seedFile){
       const oneArtist = artists.find((artist) => album.artist === artist.name );
+      console.log(album.name, oneArtist.id);
       album.artist = oneArtist.id;
     }
   }
