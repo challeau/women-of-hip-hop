@@ -7,8 +7,8 @@ const { canEdit } = require("../middleware/middlewares.js");
 // read all albums
 router.get("/", async (req, res, next) => {
   try {
-    const albums = await Album.find();
-    return res.status(200).json(albums.populate('artist'));
+    const albums = await Album.find().populate('artist');
+    return res.status(200).json(albums);
   } catch (error) {
     next(error.message);
   }
@@ -17,8 +17,8 @@ router.get("/", async (req, res, next) => {
 // get album by Id
 router.get("/:albumId", async (req, res, next) => {
   try {
-    const album = await Album.findById(req.params.albumId);
-    res.status(200).json(album.populate('artist'));
+    const album = await Album.findById(req.params.albumId).populate('artist');
+    res.status(200).json(album);
   } catch (error) {
     next(error.message);
   }
