@@ -17,7 +17,7 @@ const albumSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Artist",
     required:  [true, "Please provide the main artist."]
-  }
+  },
   creatorId: {
     type: Schema.Types.ObjectId,
     ref: "User",
