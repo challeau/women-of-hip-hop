@@ -8,7 +8,7 @@ const { canEdit } = require("../middleware/middlewares.js");
 router.get("/", async (req, res, next) => {
   try {
     const albums = await Album.find();
-    return res.status(200).json(albums);
+    return res.status(200).json(albums.populate('artist'));
   } catch (error) {
     next(error.message);
   }
@@ -18,7 +18,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:albumId", async (req, res, next) => {
   try {
     const album = await Album.findById(req.params.albumId);
-    res.status(200).json(album);
+    res.status(200).json(album.populate('artist'));
   } catch (error) {
     next(error.message);
   }
@@ -27,9 +27,9 @@ router.get("/:albumId", async (req, res, next) => {
 // add albums
 router.post("/", async (req, res, next) => {
   try {
-    const { name, picture, songs } = req.body;
+    const { name, picture, songs, artist } = req.body;
     const creatorId = req.user.id;
-    const album = await Album.create({ name, picture, songs, creatorId });
+    const album = await Album.create({ name, picture, songs, artist, creatorId });
     res.status(201).json(album);
   } catch (error) {
     next(error.message);
@@ -44,11 +44,9 @@ router.patch("/:requestId", canEdit, async (req, res, next) => {
     const updatedAlbum = await Album.findByIdAndUpdate(
       requestId,
       albumToUpdate,
-      {
-        new: true,
-      }
+      { new: true }
     );
-    res.json(updatedAlbum);
+    res.status(204).json(updatedAlbum);
   } catch (error) {
     next(error.message);
   }

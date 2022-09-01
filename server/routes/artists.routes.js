@@ -33,8 +33,6 @@ router.get("/shuffle", async (req, res, next) => {
   try {
     const artists = await Artist.find({});
     const oneArtist = artists[await getRandomIndex()];
-    if (oneArtist.albums.length > 0)
-      oneArtist = oneArtist.populate("album");
     res.status(200).json(oneArtist);
   } catch (error) {
     next(error.message);
@@ -44,9 +42,9 @@ router.get("/shuffle", async (req, res, next) => {
 // add artist to db
 router.post('/', async (req, res, next) => {
   try {
-    const { name, picture, miniBio, albums, flagSong } = req.body;
+    const { name, picture, miniBio, flagSong } = req.body;
     const creatorId = req.user.id;
-    const artist = await Artist.create({name, picture, miniBio, albums, flagSong, creatorId});
+    const artist = await Artist.create({name, picture, miniBio, flagSong, creatorId});
     res.status(201).json(artist);
   } catch (error) {
     next(error.message);
