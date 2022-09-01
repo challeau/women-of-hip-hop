@@ -28,6 +28,7 @@ async function openConnection() {
 
 // Seeds data from the seedfile provided
 async function seedInit(model, seedFile) {
+  console.log(model, model instanceof Album);
   if (model instanceof Album){
     const artists = await Artist.find().select({name: 1});
     for (const album in seedFile){
