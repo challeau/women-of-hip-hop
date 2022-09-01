@@ -25,15 +25,15 @@ const isAuthenticated = async (req, res, next) => {
 // checks for allowed crud operations
 const canEdit = async (req, res, next) => {
   try {
+    const reqId = req.params.requestId;
+    if (ObjectId.isValid(reqId) === false)
+      throw ({ message: "Please provide a valid Id" });
     if (req.user.role === "admin")	// admins have full powers
       return next();
-    else if (String(req.user.id) === String(req.params.requestId))	// for user-based operations
+    else if (String(req.user.id) === String(reqId))	// for user-based operations
       return next();
-    const id = req.params.requestId;
-    if (ObjectId.isValid(id) === false)
-      throw ({ message: "Please provide a valid Id" });
-    let requestObj = await Artist.findById(id) ?? await Album.findById(id);
-    if (String(req.user.id) === String(requestObj.creatorId))	// for artist-based operations 
+    let requestObj = await Artist.findById(reqId) ?? await Album.findById(reqId);
+    if (requestObj !== null && String(req.user.id) === String(requestObj.creatorId))	// for artist-based operations 
       return next();
     else
       throw ({message: "You cannot edit an item you didn't create."});

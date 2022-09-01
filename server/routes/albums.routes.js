@@ -48,7 +48,7 @@ router.patch("/:requestId", canEdit, async (req, res, next) => {
         new: true,
       }
     );
-    res.json(updatedAlbum);
+    res.status(204).json(updatedAlbum);
   } catch (error) {
     next(error.message);
   }
