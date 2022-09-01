@@ -20,7 +20,7 @@ router.post("/", async (req, res, next) => {
       artist_id,
       user_id: req.user.id,
     });
-    const user = await User.findByID(req.user.id);
+    const user = await User.findById(req.user.id);
     user.favoriteArtist.push(newFavorite.id);
     return res.status(201).json(newFavorite);
   } catch (error) {
