@@ -2,11 +2,11 @@ const router = require("express").Router();
 const Favorite = require("../models/Favorite.model.js");
 const User = require("../models/User.model.js");
 
-//get favorites
-router.get("/:requestId", async (req, res, next) => {
+//get user's favorites
+router.get("/", async (req, res, next) => {
   try {
     const favorites = await Favorite.find({
-      user_id: req.params.requestId,
+      user_id: req.user.id,
     }).populate("artist_id");
     return res.status(200).json(favorites);
   } catch (error) {
