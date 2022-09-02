@@ -245,7 +245,7 @@ const albums = [
       "Barcodes",
       "Cumshot",
       "Civilized",
-      "Toys "R" Us",
+      "Toys \"R\" Us",
       "Tarzan",
       "Reality, Pt. 4",
     ],
