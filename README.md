@@ -11,12 +11,10 @@
 - _id,
 - username,
 - password,
-- email ?
-- favorite artists --> many to many relationship
 
 ### Favorite list
 
-Users can add/remove artists to/from their favorites, from a query or from the shuffle.
+Users can add/remove artists to/from their favorites.
 <br/>
 
 <br/>
@@ -29,7 +27,6 @@ Users can add/remove artists to/from their favorites, from a query or from the s
 - name,
 - picture,
 - mini-bio (awards could be included here), 
-- albums --> [ObjectId], reference to 'Album' model so we get points for having several models lol
 - Flag song
 - creatorId
 
@@ -59,8 +56,9 @@ The song will be loaded thanks to a youtube iFrame or the Spotify API if time al
 
 - _id
 - title,
+- picture
 - songs,
-- artists
+- artist
 <br />
 
 <br/>
