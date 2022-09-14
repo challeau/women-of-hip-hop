@@ -17,6 +17,11 @@ module.exports = (app) => {
       origin: ['localhost:3000'],
     }));
 
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", 'localhost:3000');
+    next();
+  });
+
   // To have access to `body` property in the request
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
