@@ -14,7 +14,7 @@ module.exports = (app) => {
   app.use(
     cors({
       credentials: true,
-      origin: ['http://localhost:3000'],
+      origin: ['localhost:3000'],
     }));
 
   // To have access to `body` property in the request
