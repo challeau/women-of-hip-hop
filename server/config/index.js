@@ -11,16 +11,7 @@ module.exports = (app) => {
 
   app.set("trust proxy", 1);
 
-  app.use(
-    cors({
-      credentials: true,
-      origin: ['localhost:3000'],
-    }));
-
-  app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", 'localhost:3000');
-    next();
-  });
+  app.use(cors());
 
   // To have access to `body` property in the request
   app.use(express.json());
