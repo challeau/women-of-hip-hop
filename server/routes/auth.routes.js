@@ -99,6 +99,7 @@ router.post("/verify", async (req, res, next) => {
     .json({message: "A token is required for authentication"});
   try {
     const decoded = jsonWebToken.verify(token, process.env.TOKEN_SECRET);
+    console.log('!!!!!!!', decoded);
     return ({user: decoded});
   } catch (err) {
     console.log('???????' + err);
