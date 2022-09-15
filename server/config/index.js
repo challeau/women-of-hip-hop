@@ -26,7 +26,9 @@ const logger = require('morgan');
 //   })
   
   // app.set("trust proxy", 1);
-  app.use(cors());
+  app.use(cors({
+      origin: ['http://localhost:3000']  // <== URL of our future React app
+    }));
 
   // To have access to `body` property in the request
   app.use(express.json());
