@@ -73,7 +73,7 @@ router.post("/login", async (req, res, next) => {
       algorithm: "HS256",
       expiresIn: "1h",
     });
-    res.status(200).json({token: token, userId: foundUser._id});
+    res.status(200).json({token: token});
   } catch (error) {
     next(error);
   }
@@ -93,5 +93,19 @@ router.delete(
     }
   }
 );
+
+router.get("/verify", async (req, res) => {
+  const token = req.body.token || req.query.token || req.headers['Authorization'];
+
+  if (!token)
+    return res.status(403).json({message: 'A token is required for authentication'});
+  try {
+    const decoded = jwt.verify(token, config.TOKEN_KEY);
+    returnres.status(200).json(decoded);
+  } catch (err) {
+    return res.status(401).json({message: 'Invalid Token'});
+  }
+  return next();
+};
 
 module.exports = router;
