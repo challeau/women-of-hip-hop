@@ -14,7 +14,7 @@ router.post("/signup", async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId);
     if (user)
-      res.status(400).json({message: "This username is taken."})
+      res.status(400).json({message: "This username is taken."});
     const generatedSalt = bcrypt.genSaltSync(salt);
     const hashedPassword = bcrypt.hashSync(password, generatedSalt);
 
@@ -92,20 +92,18 @@ router.delete("/:requestId", isAuthenticated, canEdit, async (req, res, next) =>
 );
 
 router.post("/verify", async (req, res, next) => {
-  console.log(req.body);
   const token = req.body.token;
 
   if (!token)
     return res.status(403)
     .json({message: "A token is required for authentication"});
   try {
-    const decoded = jwt.verify(token, config.TOKEN_KEY);
+    const decoded = jwt.verify(token, process.env.TOKEN_KEY);
     return ({user: decoded});
   } catch (err) {
     return res.status(401).json({message: "Invalid Token"});
   }
   return next();
-}
-	  );
+});
 
 module.exports = router;
