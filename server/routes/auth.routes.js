@@ -72,9 +72,9 @@ router.post("/login", async (req, res, next) => {
     const tokenSecret = `${process.env.TOKEN_SECRET}`;
     const token = jsonWebToken.sign(payload, tokenSecret, {
       algorithm: "HS256",
-      expiresIn: "1000h",
+      expiresIn: "1h",
     });
-    res.status(200).json({token: token});
+    res.status(200).json({token: token, user: foundUser});
   } catch (error) {
     next(error);
   }
