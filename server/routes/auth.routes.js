@@ -98,7 +98,7 @@ router.post("/verify", async (req, res, next) => {
     return res.status(403)
     .json({message: "A token is required for authentication"});
   try {
-    const decoded = jwt.verify(token, process.env.TOKEN_KEY);
+    const decoded = jsonWebToken.verify(token, process.env.TOKEN_SECRET);
     return ({user: decoded});
   } catch (err) {
     return res.status(401).json({message: "Invalid Token"});
