@@ -12,7 +12,7 @@ async function getRandomIndex() {
 router.get("/", async (req, res, next) => {
   try {
     const artists = await Artist.find({});
-    res.json({ artists });
+    res.status(200).json({ artists });
   } catch (error) {
     next(error.message);
   }
@@ -62,7 +62,7 @@ router.patch("/:requestId", canEdit, async (req, res, next) => {
       artistToUpdate,
       { new: true }
     );
-    res.status(204).json(updatedArtist);
+    res.status(200).json(updatedArtist);
   } catch (error) {
     next(error.message);
   }

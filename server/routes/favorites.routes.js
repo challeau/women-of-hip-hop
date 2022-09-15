@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Favorite = require("../models/Favorite.model.js");
 const User = require("../models/User.model.js");
+const {canEdit} = require("../middleware/middlewares.js");
 
 //get user's favorites
 router.get("/", async (req, res, next) => {
@@ -29,7 +30,7 @@ router.post("/", async (req, res, next) => {
 });
 
 //delete favorite
-router.delete("/:favoriteId", async (req, res, next) => {
+router.delete("/:favoriteId", canEdit, async (req, res, next) => {
   try {
     await Favorite.findByIdAndDelete(req.params.favoriteId);
     res.status(204).json(`favorite deleted`);
