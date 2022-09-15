@@ -9,11 +9,12 @@ const salt = 10;
 router.post("/signup", async (req, res, next) => {
   const { username, password, image } = req.body;
   if (!password || !username) {
-    return res
-      .status(400)
-      .json({ message: "Please provide a valid password and username." });
+    return res.status(400).json({ message: "Please provide a username and a password." });
   }
   try {
+    const user = await User.findById(req.params.userId);
+    if (user)
+      res.status(400).json({message: "This username is taken."})
     const generatedSalt = bcrypt.genSaltSync(salt);
     const hashedPassword = bcrypt.hashSync(password, generatedSalt);
 
@@ -25,7 +26,7 @@ router.post("/signup", async (req, res, next) => {
     const createdUser = await User.create(newUser);
     res.status(201).json(createdUser);
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 });
 
@@ -55,16 +56,16 @@ router.post("/login", async (req, res, next) => {
   if (!username || !password) {
     return res
       .status(400)
-      .json({ message: "Please provide username and password" });
+      .json({ message: "Please provide a username and a password" });
   }
   try {
     const foundUser = await User.findOne({ username });
     if (!foundUser) {
-      return res.status(400).json({ message: "wrong credentials" });
+      return res.status(400).json({ message: "Wrong credentials: double check your username." });
     }
     const matchingPassword = bcrypt.compareSync(password, foundUser.password);
     if (!matchingPassword) {
-      return res.status(400).json({ message: "wrong credentials" });
+      return res.status(400).json({ message: "Wrong credentials: double check your password." });
     }
 
     const payload = { username };
@@ -73,8 +74,7 @@ router.post("/login", async (req, res, next) => {
       algorithm: "HS256",
       expiresIn: "1000h",
     });
-//    res.status(200).json({token: token});
-    res.json({ token: token }).status(200);
+    res.status(200).json({token: token});
   } catch (error) {
     next(error);
   }
