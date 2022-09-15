@@ -91,7 +91,7 @@ router.delete("/:requestId", isAuthenticated, canEdit, async (req, res, next) =>
   }
 );
 
-router.get("/users", async (req, res, next) => {
+router.post("/verify", async (req, res, next) => {
   console.log(req.body);
   const token = req.body.token;
 
@@ -104,7 +104,8 @@ router.get("/users", async (req, res, next) => {
   } catch (err) {
     return res.status(401).json({message: "Invalid Token"});
   }
-  return next();}
+  return next();
+}
 	  );
 
 module.exports = router;
