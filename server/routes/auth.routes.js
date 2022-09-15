@@ -74,7 +74,7 @@ router.post("/login", async (req, res, next) => {
       algorithm: "HS256",
       expiresIn: "1h",
     });
-    res.status(200).json({token: token, user: foundUser});
+    res.status(200).json({token: token, userId: foundUser._id});
   } catch (error) {
     next(error);
   }
