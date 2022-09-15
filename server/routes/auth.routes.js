@@ -81,11 +81,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 //delete user
-router.delete(
-  "/:requestId",
-  isAuthenticated,
-  canEdit,
-  async (req, res, next) => {
+router.delete("/:requestId", isAuthenticated, canEdit, async (req, res, next) => {
     try {
       await User.findByIdAndDelete(req.params.requestId);
       res.status(204).json(`user deleted`);
@@ -94,5 +90,21 @@ router.delete(
     }
   }
 );
+
+router.get("/users", async (req, res, next) => {
+  console.log(req.body);
+  const token = req.body.token;
+
+  if (!token)
+    return res.status(403)
+    .json({message: "A token is required for authentication"});
+  try {
+    const decoded = jwt.verify(token, config.TOKEN_KEY);
+    return ({user: decoded});
+  } catch (err) {
+    return res.status(401).json({message: "Invalid Token"});
+  }
+  return next();}
+	  );
 
 module.exports = router;
