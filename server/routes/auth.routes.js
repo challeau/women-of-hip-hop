@@ -100,7 +100,7 @@ router.post("/verify", async (req, res, next) => {
   try {
     const decoded = jsonWebToken.verify(token, process.env.TOKEN_SECRET);
     console.log('!!!!!!!', decoded);
-    return ({user: decoded});
+    return (res.status(200).json({user: decoded}));
   } catch (err) {
     console.log('???????' + err);
     return res.status(401).json({message: "Invalid Token"});
