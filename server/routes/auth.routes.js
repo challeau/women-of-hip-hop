@@ -12,9 +12,6 @@ router.post("/signup", async (req, res, next) => {
     return res.status(400).json({ message: "Please provide a username and a password." });
   }
   try {
-    const user = await User.findById(req.params.userId);
-    if (user)
-      res.status(400).json({message: "This username is taken."});
     const generatedSalt = bcrypt.genSaltSync(salt);
     const hashedPassword = bcrypt.hashSync(password, generatedSalt);
 
@@ -26,7 +23,8 @@ router.post("/signup", async (req, res, next) => {
     const createdUser = await User.create(newUser);
     res.status(201).json(createdUser);
   } catch (error) {
-    next(error);
+    let errorMsg = error.message.includes('E11000') ? 'This username is taken.' : error;
+    next(errorMsg);
   }
 });
 
