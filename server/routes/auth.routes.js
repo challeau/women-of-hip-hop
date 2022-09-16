@@ -23,8 +23,10 @@ router.post("/signup", async (req, res, next) => {
     const createdUser = await User.create(newUser);
     res.status(201).json(createdUser);
   } catch (error) {
-    let errorMsg = error.message.includes('E11000') ? 'This username is taken.' : error;
-    next(errorMsg);
+    if (error.message.includes('E11000'))
+      return res.status(400).json({ message: "This username is taken." });
+    else
+      next(error);
   }
 });
 
