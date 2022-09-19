@@ -85,12 +85,12 @@ router.patch("/change-picture", isAuthenticated, async(req, res, next) => {
   try {
     const newPicture = req.body;
     const requestId = req.user.id;
-    const updatedArtist = await User.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       requestId,
-      newPicture,
+      {image: newPicture},
       { new: true }
     );
-    res.status(200).json(updatedArtist);
+    res.status(200).json(updatedUser);
   } catch (error) {
     next(error);
   }
