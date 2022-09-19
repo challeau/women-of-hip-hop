@@ -81,10 +81,12 @@ router.post("/login", async (req, res, next) => {
 });
 
 // change user picture
-router.patch("/changePicture", isAuthenticated, canEdit, async(req, res, next) => {
+router.patch("/change-picture", isAuthenticated, async(req, res, next) => {
   try {
     const newPicture = req.body;
+    const requestId = req.user.id;
     const updatedArtist = await User.findByIdAndUpdate(
+      requestId,
       newPicture,
       { new: true }
     );
