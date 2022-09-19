@@ -40,7 +40,7 @@ router.post("/", async (req, res, next) => {
   try {
     const { name, picture, songs, artistName } = req.body;
     const artist = Artist.find({name: artistName})._id;
-    console.log('!!!!' + artist);
+    console.log('!!!!' + artist, artistName);
     const creatorId = req.user.id;
     const album = await Album.create({ name, picture, songs, artist, creatorId });
     res.status(201).json(album);
