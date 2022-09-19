@@ -80,6 +80,20 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+// change user picture
+router.patch("/changePicture", isAuthenticated, canEdit, async(req, res, next) => {
+  try {
+    const newPicture = req.body;
+    const updatedArtist = await User.findByIdAndUpdate(
+      newPicture,
+      { new: true }
+    );
+    res.status(200).json(updatedArtist);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //delete user
 router.delete("/:requestId", isAuthenticated, canEdit, async (req, res, next) => {
     try {
