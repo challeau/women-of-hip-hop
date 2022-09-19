@@ -28,12 +28,34 @@ router.get("/find/:artistId", async (req, res, next) => {
   }
 });
 
+// get all of user's artists
+router.get("/myArtists", async (req, res, next) => {
+  try {
+   const myArtists = await Artist.find({ creatorId: String(req.user.id) });
+    res.status(200).json(myArtists);
+  } catch (error) {
+    next(error.message);
+  }
+});
+
+
 // get one artist at random
 router.get("/shuffle", async (req, res, next) => {
   try {
     const artists = await Artist.find({});
     const oneArtist = artists[await getRandomIndex()];
     res.status(200).json(oneArtist);
+  } catch (error) {
+    next(error.message);
+  }
+});
+
+// get all of user's albums
+router.get("/my/artists", async (req, res, next) => {
+  console.log('hello');
+  try {
+   const myAlbums = await Album.find({ creatorId: String(req.user.id) });
+    res.status(200).json(myAlbums);
   } catch (error) {
     next(error.message);
   }

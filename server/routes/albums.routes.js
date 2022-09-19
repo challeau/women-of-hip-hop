@@ -4,7 +4,7 @@ const router = require("express").Router();
 const Album = require("../models/Album.model.js");
 const { canEdit } = require("../middleware/middlewares.js");
 
-// read all albums
+// get all albums
 router.get("/", async (req, res, next) => {
   try {
     const albums = await Album.find().populate('artist');
@@ -15,10 +15,20 @@ router.get("/", async (req, res, next) => {
 });
 
 // get album by Id
-router.get("/:albumId", async (req, res, next) => {
+router.get("/find/:albumId", async (req, res, next) => {
   try {
     const album = await Album.findById(req.params.albumId).populate('artist');
     res.status(200).json(album);
+  } catch (error) {
+    next(error.message);
+  }
+});
+
+// get all of user's albums
+router.get("/myAlbums", async (req, res, next) => {
+  try {
+   const myAlbums = await Album.find({ creatorId: String(req.user.id) });
+    res.status(200).json(myAlbums);
   } catch (error) {
     next(error.message);
   }
