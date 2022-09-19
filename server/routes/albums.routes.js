@@ -39,10 +39,9 @@ router.get("/myAlbums", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const { name, picture, songs, artist } = req.body;
-    const artistId = Artist.find({name: artist})._id;
-    console.log('!!!!' + artist, artistId);
+    const artistObj = await Artist.find({name: artist});
     const creatorId = req.user.id;
-    const album = await Album.create({ name, picture, songs, artistId, creatorId });
+    const album = await Album.create({ name, picture, songs, artist: artistObj[0].id, creatorId });
     res.status(201).json(album);
   } catch (error) {
     next(error.message);
