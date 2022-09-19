@@ -38,11 +38,11 @@ router.get("/myAlbums", async (req, res, next) => {
 // add albums
 router.post("/", async (req, res, next) => {
   try {
-    const { name, picture, songs, artistName } = req.body;
-    const artist = Artist.find({name: artistName})._id;
-    console.log('!!!!' + artist, artistName);
+    const { name, picture, songs, artist } = req.body;
+    const artistId = Artist.find({name: artist})._id;
+    console.log('!!!!' + artist, artistId);
     const creatorId = req.user.id;
-    const album = await Album.create({ name, picture, songs, artist, creatorId });
+    const album = await Album.create({ name, picture, songs, artistId, creatorId });
     res.status(201).json(album);
   } catch (error) {
     next(error.message);
