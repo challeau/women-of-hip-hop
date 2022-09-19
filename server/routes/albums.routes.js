@@ -28,7 +28,7 @@ router.get("/find/:albumId", async (req, res, next) => {
 // get all of user's albums
 router.get("/myAlbums", async (req, res, next) => {
   try {
-   const myAlbums = await Album.find({ creatorId: String(req.user.id) });
+    const myAlbums = await Album.find({ creatorId: String(req.user.id) }).populate('artist');
     res.status(200).json(myAlbums);
   } catch (error) {
     next(error.message);
