@@ -2,6 +2,7 @@
 
 const router = require("express").Router();
 const Album = require("../models/Album.model.js");
+const Artist = require("../models/Artist.model.js");
 const { canEdit } = require("../middleware/middlewares.js");
 
 // get all albums
@@ -37,7 +38,8 @@ router.get("/myAlbums", async (req, res, next) => {
 // add albums
 router.post("/", async (req, res, next) => {
   try {
-    const { name, picture, songs, artist } = req.body;
+    const { name, picture, songs, artistName } = req.body;
+    const artist = Artist.find({name: artistName});
     const creatorId = req.user.id;
     const album = await Album.create({ name, picture, songs, artist, creatorId });
     res.status(201).json(album);
