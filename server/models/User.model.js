@@ -12,9 +12,8 @@ const userSchema = new Schema({
   },
   picture: {
     type: String,
-    default: "https://pbs.twimg.com/media/FE-7qY8WUAATlNV.jpg",
+    default: "https://www.scoutmag.ph/wp-content/uploads/2020/08/ERUe0aBU0AE4y4X.jpg",
   },
-
   role: {
     type: String,
     enum: ["admin"],
