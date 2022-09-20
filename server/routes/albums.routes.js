@@ -41,7 +41,7 @@ router.post("/", async (req, res, next) => {
     const { name, picture, songs, artist } = req.body;
     const artistObj = await Artist.find({name: artist});
     const creatorId = req.user.id;
-    const album = await Album.create({ name, picture, songs, artist: artistObj[0].id, creatorId });
+    const album = await Album.create({ name: name, image: picture, songs: songs, artist: artistObj[0].id, creatorId: creatorId });
     res.status(201).json(album);
   } catch (error) {
     next(error.message);
