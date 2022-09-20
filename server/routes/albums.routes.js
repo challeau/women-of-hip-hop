@@ -41,7 +41,7 @@ router.post("/", async (req, res, next) => {
     const { name, picture, songs, artist } = req.body;
     const artistObj = await Artist.find({name: artist});
     if (!artistObj[0])
-      return res.status(204).json({message: "We don't know this artist yet. Please create her page first."});
+      return res.status(401).json({message: "We don't know this artist yet. Please create her page first."});
     const creatorId = req.user.id;
     const album = await Album.create({ name: name, picture: picture, songs: songs, artist: artistObj[0].id, creatorId: creatorId });
     res.status(201).json(album);
