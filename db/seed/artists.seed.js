@@ -50,7 +50,7 @@ const artists = [
   {
     name: "Lil Kim'",
     picture:
-      "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE4MDAzNDEwOTU0NzE2Njg2/lil-kim-sexy-magazine-cover.jpg",
+      "https://lastfm.freetls.fastly.net/i/u/770x0/a688307c2ee13a81e6754f804d7cba18.jpg#a688307c2ee13a81e6754f804d7cba18",
     miniBio:
       "Lil' Kim found success as a female rapper starting in the mid '90s, with her explicit lyrics and sexy persona under the guidance of hip-hop icon Biggie Smalls.",
     flagSong:
@@ -80,7 +80,7 @@ const artists = [
   {
     name: "Rico Nasty",
     picture:
-      "https://lastfm.freetls.fastly.net/i/u/770x0/4c9d5c6f8797d9f7acdc9db294c0ef4d.jpghttps://media.gettyimages.com/photos/american-rapper-missy-elliott-in-december-2002-in-miami-florida-picture-id1367040393?s=612x612",
+      "https://media.pitchfork.com/photos/5b27c372eded5567e42607da/1:1/w_600/100000x100000-999.jpg",
     miniBio:
       "Maria-Cecilia Rico Nasty is a professional name for Simone Kelly (born May 7, 1997), an American rapper and vocalist from Maryland.",
     flagSong:
@@ -90,7 +90,7 @@ const artists = [
   {
     name: "Eve",
     picture:
-      "https://lastfm.freetls.fastly.net/i/u/770x0/4c9d5c6f8797d9f7acdc9db294c0ef4d.jpghttps://media.gettyimages.com/photos/american-rapper-missy-elliott-in-december-2002-in-miami-florida-picture-id1367040393?s=612x612",
+      "https://www.interviewmagazine.com/wp-content/uploads/2020/11/sept_scan0003-scaled.jpg",
     miniBio:
       "Eve is a rapper and actress, best known for hits like 'What Ya Want,' 'Gangsta Lovin,' and her Grammy-winning 'Let Me Blow Ya Mind' collab with Gwen Stefani.",
     flagSong: "https://www.youtube.com/watch?v=Wt88GMJmVk0&ab_channel=EveVEVO",
@@ -116,7 +116,7 @@ const artists = [
   },
   {
     name: "Flo Milli",
-    picture: "https://www.famousbirthdays.com/faces/flo-milli-image.jpg",
+    picture: "https://upload.wikimedia.org/wikipedia/commons/6/6e/FLO-MILLI_HIGH_DEF_CROP.jpg",
     miniBio:
       "Notable for her raw and honest vocals, she is a rap artist who returned to the limelight with the single 'Beef FloMix' in early 2019 after dropping the song 'Not Friendly' ten months prior.",
     flagSong:
