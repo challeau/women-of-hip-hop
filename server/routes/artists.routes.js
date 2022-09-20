@@ -56,7 +56,8 @@ router.post('/', async (req, res, next) => {
 
     const { name, picture, miniBio, flagSong } = req.body;
     const creatorId = req.user.id;
-    const artist = await Artist.create({name, picture, miniBio, flagSong, creatorId});
+    const artist = await Artist.create({name: name, picture: picture,
+					miniBio: miniBio, flagSong: flagSong, creatorId: creatorId});
     res.status(201).json(artist);
   } catch (error) {
     next(error.message);
