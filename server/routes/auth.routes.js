@@ -7,7 +7,7 @@ const salt = 10;
 
 //create user/signup
 router.post("/signup", async (req, res, next) => {
-  const { username, password, image } = req.body;
+  const { username, password, picture } = req.body;
   if (!password || !username) {
     return res.status(400).json({ message: "Please provide a username and a password." });
   }
@@ -18,7 +18,7 @@ router.post("/signup", async (req, res, next) => {
     const newUser = {
       username,
       password: hashedPassword,
-      image: image
+      picture: picture
     };
     const createdUser = await User.create(newUser);
     res.status(201).json(createdUser);

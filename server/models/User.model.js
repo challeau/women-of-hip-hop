@@ -10,7 +10,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, "Please provide a password."],
   },
-  image: {
+  picture: {
     type: String,
     default: "https://pbs.twimg.com/media/FE-7qY8WUAATlNV.jpg",
   },
