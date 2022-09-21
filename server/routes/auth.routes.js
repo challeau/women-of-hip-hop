@@ -80,13 +80,30 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+// change password
+router.patch("/change-password", async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const newPassword = req.body;
+    const generatedSalt = bcrypt.genSaltSync(salt);
+    const hashedPassword = bcrypt.hashSync(newPassword, generatedSalt);
+
+    if (!newPassword)
+      return res.status(401).json({ message: "Please provide a new password." });
+    const updateUser = await User.findByIdAndUpdate(userId, hashedPassword, {new: true});
+    return res.status(200).json(createdUser);
+  } catch (error){
+    next(error);
+  }
+});
+
 // change user picture
 router.patch("/change-picture", isAuthenticated, async(req, res, next) => {
   try {
     const newPicture = req.body;
-    const requestId = req.user.id;
+    const userId = req.user.id;
     const updatedUser = await User.findByIdAndUpdate(
-      requestId,
+      userId,
       newPicture,
       { new: true }
     );
@@ -96,7 +113,7 @@ router.patch("/change-picture", isAuthenticated, async(req, res, next) => {
   }
 });
 
-//delete user
+// delete user
 router.delete("/:requestId", isAuthenticated, canEdit, async (req, res, next) => {
     try {
       await User.findByIdAndDelete(req.params.requestId);
@@ -107,6 +124,7 @@ router.delete("/:requestId", isAuthenticated, canEdit, async (req, res, next) =>
   }
 );
 
+// verify jwt
 router.post("/verify", async (req, res, next) => {
   const token = req.body.token;
 
