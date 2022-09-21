@@ -90,7 +90,7 @@ router.patch("/change-password", async (req, res, next) => {
 
     if (!newPassword)
       return res.status(401).json({ message: "Please provide a new password." });
-    const updateUser = await User.findByIdAndUpdate(userId, hashedPassword, {new: true});
+    const updateUser = await User.findByIdAndUpdate(userId, {password: hashedPassword}, {new: true});
     return res.status(200).json(createdUser);
   } catch (error){
     next(error);
