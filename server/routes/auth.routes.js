@@ -83,7 +83,6 @@ router.post("/login", async (req, res, next) => {
 // change password
 router.patch("/change-password", isAuthenticated, async (req, res, next) => {
   try {
-    console.log(req.user);
     const userId = req.user.id;
     const newPassword = req.body.password;
     const generatedSalt = bcrypt.genSaltSync(salt);
@@ -91,8 +90,6 @@ router.patch("/change-password", isAuthenticated, async (req, res, next) => {
 
     if (!newPassword)
       return res.status(401).json({ message: "Please provide a new password." });
-    if (!userId)
-      return res.status(401).json({ message: "Bruh." });
     const updateUser = await User.findByIdAndUpdate(userId, {password: hashedPassword}, {new: true});
     return res.status(200).json(updateUser);
   } catch (error){
@@ -105,6 +102,9 @@ router.patch("/change-picture", isAuthenticated, async(req, res, next) => {
   try {
     const newPicture = req.body;
     const userId = req.user.id;
+
+    if (!newPicture)
+      return res.status(401).json({ message: "Please provide a new picture." });
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       newPicture,
