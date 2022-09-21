@@ -40,7 +40,6 @@ router.post("/", async (req, res, next) => {
   try {
     const { name, picture, songs, artist } = req.body;
     const artistObj = await Artist.find({name: artist});
-    console.log("?????????????????????");
     if (!artistObj[0])
       return res.status(401).json({message: "We don't know this artist yet. Please create her page first."});
     const creatorId = req.user.id;
@@ -55,6 +54,8 @@ router.post("/", async (req, res, next) => {
 router.patch("/:requestId", canEdit, async (req, res, next) => {
   try {
     const albumToUpdate = req.body;
+    const artistObj = await Artist.find({ name: albumToUpdate.artist });
+    albumToUpdate.artist = artistObj[0].id;
     const { requestId } = req.params;
     const updatedAlbum = await Album.findByIdAndUpdate(
       requestId,
