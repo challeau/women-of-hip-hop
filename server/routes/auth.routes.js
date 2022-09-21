@@ -84,12 +84,14 @@ router.post("/login", async (req, res, next) => {
 router.patch("/change-password", async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const newPassword = req.body;
+    const newPassword = req.body.password;
     const generatedSalt = bcrypt.genSaltSync(salt);
     const hashedPassword = bcrypt.hashSync(newPassword, generatedSalt);
 
     if (!newPassword)
       return res.status(401).json({ message: "Please provide a new password." });
+    if (!userId)
+      return res.status(401).json({ message: "Bruh." });
     const updateUser = await User.findByIdAndUpdate(userId, {password: hashedPassword}, {new: true});
     return res.status(200).json(createdUser);
   } catch (error){
