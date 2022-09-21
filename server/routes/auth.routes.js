@@ -83,7 +83,7 @@ router.post("/login", async (req, res, next) => {
 // change password
 router.patch("/change-password", async (req, res, next) => {
   try {
-    console.log(req);
+    console.log(req.user);
     const userId = req.user.id;
     const newPassword = req.body.password;
     const generatedSalt = bcrypt.genSaltSync(salt);
