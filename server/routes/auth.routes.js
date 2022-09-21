@@ -90,7 +90,10 @@ router.patch("/change-password", isAuthenticated, async (req, res, next) => {
 
     if (!newPassword)
       return res.status(401).json({ message: "Please provide a new password." });
-    const updateUser = await User.findByIdAndUpdate(userId, {password: hashedPassword}, {new: true});
+    const updateUser = await User.findByIdAndUpdate(
+      userId,
+      { password: hashedPassword },
+      { new: true });
     return res.status(200).json(updateUser);
   } catch (error){
     next(error);
@@ -100,14 +103,14 @@ router.patch("/change-password", isAuthenticated, async (req, res, next) => {
 // change user picture
 router.patch("/change-picture", isAuthenticated, async(req, res, next) => {
   try {
-    const newPicture = req.body;
+    const newPicture = req.body.picture;
     const userId = req.user.id;
 
     if (!newPicture)
       return res.status(401).json({ message: "Please provide a new picture." });
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      newPicture,
+      { picture: newPicture },
       { new: true }
     );
     res.status(200).json(updatedUser);
