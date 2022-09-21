@@ -81,7 +81,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 // change password
-router.patch("/change-password", async (req, res, next) => {
+router.patch("/change-password", isAuthenticated, async (req, res, next) => {
   try {
     console.log(req.user);
     const userId = req.user.id;
