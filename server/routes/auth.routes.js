@@ -94,7 +94,7 @@ router.patch("/change-password", isAuthenticated, async (req, res, next) => {
     if (!userId)
       return res.status(401).json({ message: "Bruh." });
     const updateUser = await User.findByIdAndUpdate(userId, {password: hashedPassword}, {new: true});
-    return res.status(200).json(createdUser);
+    return res.status(200).json(updateUser);
   } catch (error){
     next(error);
   }
