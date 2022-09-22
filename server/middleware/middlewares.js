@@ -26,8 +26,8 @@ const isAuthenticated = async (req, res, next) => {
 const canEdit = async (req, res, next) => {
   try {
     const reqId = req.params.requestId;
-    if (ObjectId.isValid(reqId) === false)
-      throw ({ message: "Please provide a valid Id" });
+    // if (ObjectId.isValid(reqId) === false)
+    //   throw ({ message: "Please provide a valid Id" });
     if (req.user.role === "admin")	// admins have full powers
       return next();
     else if (String(req.user.id) === String(reqId))	// for user-based operations
