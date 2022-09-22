@@ -9,17 +9,9 @@ const logger = require('morgan');
 // Link frontend
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true
+    origin: ['http://localhost:3000', process.env.FRONTEND_URL]
   })
 );
-
-app.use(
-  cors({
-    origin: 'http://localhost:3000'
-  })
-);
-
 
 // Middleware configuration
 module.exports = (app) => {
