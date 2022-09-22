@@ -10,6 +10,10 @@ const favoriteSchema = new Schema({
     ref: "Artist",
     unique: true,
   },
+  creatorId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Favorite = model("Favorite", favoriteSchema);

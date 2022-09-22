@@ -22,6 +22,7 @@ router.post("/", async (req, res, next) => {
     const newFavorite = await Favorite.create({
       artist_id: artist_id,
       user_id: req.user.id,
+      creatorId: req.user.id,
     });
     return res.status(201).json(newFavorite);
   } catch (error) {
