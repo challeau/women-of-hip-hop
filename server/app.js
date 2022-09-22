@@ -2,12 +2,17 @@
 const express = require("express");
 const app = express();
 
+// Link frontend
+app.use(cors({
+  origin: ['http://localhost:3000']  // <== URL of our future React app
+}));
+
+
 // Link middleware
 const { isAuthenticated } = require("./middleware/middlewares.js");
 
-
 // Link error handler
-require('./error-handling')(app);
+//require('./error-handling')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require("dotenv").config();
