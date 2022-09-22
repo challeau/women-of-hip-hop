@@ -10,14 +10,12 @@ module.exports = (app) => {
   // In development environment the app logs
   app.use(logger('dev'));
 
+  
   // Link frontend
-  app.use(
-    cors({
-      origin: ['http://localhost:3000', process.env.FRONTEND_URL],
-      credentials: true
-    })
-  );
-
+  app.use(cors({
+    origin: ['http://localhost:3000']  // <== URL of our future React app
+  }));
+  
   // To have access to `body` property in the request
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
