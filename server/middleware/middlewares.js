@@ -3,6 +3,7 @@ const jsonWebToken = require("jsonwebtoken");
 const User = require("../models/User.model");
 const Artist = require("../models/Artist.model");
 const Album = require("../models/Album.model");
+const Favorite = require("../models/Favorite.model");
 
 const isAuthenticated = async (req, res, next) => {
   try {
