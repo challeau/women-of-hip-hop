@@ -32,6 +32,7 @@ const canEdit = async (req, res, next) => {
       return next();
     else if (String(req.user.id) === String(reqId))	// for user-based operations
       return next();
+    // ?? -> nullish coalescing operator > returns the first non null/undefined value 
     let requestObj = await Artist.findById(reqId) ?? await Album.findById(reqId);
     if (requestObj !== null && String(req.user.id) === String(requestObj.creatorId))	// for artist-based operations 
       return next();
