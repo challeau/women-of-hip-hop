@@ -1,7 +1,25 @@
 const express = require('express');
+const app = express();
+const cors = require('cors');
 
 // messages in the terminal as requests are coming in
 const logger = require('morgan');
+
+
+// Link frontend
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true
+  })
+);
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000'
+  })
+);
+
 
 // Middleware configuration
 module.exports = (app) => {
