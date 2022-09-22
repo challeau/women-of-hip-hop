@@ -4,7 +4,7 @@ const albums = [
   {
     name: "Pink Friday",
     picture:
-      "https://urbanislandz.com/wp-content/uploads/2010/10/Nicki-Minaj-Pink-Friday-Album-Cover1.jpg",
+    "https://urbanislandz.com/wp-content/uploads/2010/10/Nicki-Minaj-Pink-Friday-Album-Cover1.jpg",
     songs: [
       "I'm The Best",
       "Roman's Revenge (featuring Eminem)",
@@ -30,7 +30,7 @@ const albums = [
   {
     name: "Traumazine",
     picture:
-      "https://cdn-www.konbini.com/files/2022/08/Megan-Thee-Stallion-Traumazine.jpg",
+    "https://cdn-www.konbini.com/files/2022/08/Megan-Thee-Stallion-Traumazine.jpg",
     songs: [
       "NDA",
       "Ungrateful feat. Key Glock",
@@ -81,18 +81,18 @@ const albums = [
     "name" : "Amala",
     "picture": "https://upload.wikimedia.org/wikipedia/en/b/b9/Dojacatamala.png",
     "songs" : ["Go To Town",
-    "Cookie Jar",
-    "Roll With Us",
-    "Wine Pon You",
-    "Fancy",
-    "Wild Beach",
-    "Morning Light",
-    "Candy",
-    "Game",
-    "Casual",
-    "Down Low",
-    "Body Language",
-    "All Nighter"]
+	       "Cookie Jar",
+	       "Roll With Us",
+	       "Wine Pon You",
+	       "Fancy",
+	       "Wild Beach",
+	       "Morning Light",
+	       "Candy",
+	       "Game",
+	       "Casual",
+	       "Down Low",
+	       "Body Language",
+	       "All Nighter"]
   },
   {
     name: "Invasion of Privacy",
@@ -143,7 +143,7 @@ const albums = [
       "Outro",
       "No One (Remix)",
     ],
-    artist: "Lil Kim'",
+    artist: "Lil' Kim",
     creatorId: new ObjectID(0)    
   },
   {
@@ -415,7 +415,191 @@ const albums = [
     ],
     artist: "Aya Nakamura",
     creatorId: new ObjectID(0)    
-  }
+  },
+  {
+    name: "Gore",
+    picture: "https://i.scdn.co/image/ab67616d0000b273dfa779a3ef982718266c1b57",
+    songs: [
+      "Dilemme",
+      "Bon acteur",
+      "Téléphone sonne",
+      "Dans la hess",
+      "Tout est gore",
+      "Amigo",
+      "Messes basses",
+      "Courant d'air",
+      "Quatre heures du matin",
+      "Solo"
+    ],
+    artist: "Lous and the Yakuza",
+    creatorId: new ObjectID(0)    
+  },
+  {
+    name: "TRAP MAMA",
+    picture: "https://images.genius.com/59f6e42e22b215d929158c449f2fb5e0.600x600x1.jpg",
+    songs: [
+      "Shoot",
+      "Trap Mama",
+      "Drip",
+      "Black Samouraï",
+      "Fresh",
+      "Clean",
+      "Poetic Justice",
+      "Glamour"
+    ],
+    artist: "Le Juiice",
+    creatorId: new ObjectID(0)    
+  },
+  {
+    name: "Mother",
+    picture: "https://i.scdn.co/image/ab67616d0000b273ab22c85bde2eb37d9b51ac77",
+    songs: [
+      "Netflix",
+      "Size",
+      "Legal Geneva",
+      "Bad Buzz",
+      "Bubble Gum",
+      "M.L.O (Intro)",
+      "Monet Liza",
+      "Tu non sei come me",
+      "Validee",
+      "Up & Down",
+      "Business",
+      "Fat Pussy",
+      "Clap",
+      "Ninja",
+    ],
+    artist: "Liza Monet",
+    creatorId: new ObjectID(0)    
+  },
+  {
+        name: "Hood Foreign - EP",
+    picture: "https://is2-ssl.mzstatic.com/image/thumb/Music4/v4/08/b2/db/08b2db5c-b37c-5a0e-bdb1-9b3652e132c4/hfcoverfinal-1378413815_450x.jpg/1000x1000bb.webp",
+    songs: [
+      "Callin",
+      "Face Down",
+      "Valid",
+      "G'D Up",
+      "BLK Diamonds",
+      "With You",
+      "Lick It",
+    ],
+    artist: "Maliibu Miitch",
+    creatorId: new ObjectID(0)    
+  },
+  {
+    name: "Young & Turnt",
+    picture: "https://i.scdn.co/image/ab67616d0000b273057df02edb1e046a25cf16f1",
+    songs: [
+      "TTG",
+      "Outside freestyle",
+      "They Like",
+      "Back to Back",
+      "Start sum shit",
+      "Nawl Fr",
+      "Nobody Gang freestyle",
+      "Get violent",
+      "Love letter",
+    ],
+    artist: "Lil Kayla",
+    creatorId: new ObjectID(0)    
+  },
+  {
+
+    name: "SMD",
+    picture: "https://static.qobuz.com/images/covers/pb/0v/g4gqkcgu50vpb_600.jpg",
+    songs: [
+      "BEEN POPPIN",
+      "LIT BITCH",
+      "LIKE ME",
+      "UP N DOWN",
+      "GIMMIE DAT",
+      "GT DRILL",
+      "TOP BITCH",
+      "ASH DRIP (Interlude)",
+      "SMD",
+      "BIRKIN",
+      "INSIDE",
+      "LAVISH",
+      "RIDE",
+    ],
+    artist: "chinese kitty",
+    creatorId: new ObjectID(0)    
+  },
+  {
+    name: "Starts Here",
+    picture: "https://i.scdn.co/image/ab67616d0000b27314fb54be215b955aadf7e1d5",
+    songs: [
+      "Shell",
+      "5 Hours of Doom",
+      "Chat Dem A Chat",
+      "Boss",
+      "Guard Up",
+      "Do This",
+      "Level Them Up",
+      "All Facts",
+      "Cobra",
+      "Throwback",
+    ],
+    artist: "Cassie Rytz",
+    creatorId: new ObjectID(0)    
+  },
+  {
+    name: "Queen of the South",
+    picture: "https://i.guim.co.uk/img/media/2e79ae0656f5c4eaaceb8ce77617670789e75425/0_178_7493_4496/master/7493.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=c7a1021fb80a353f6ec9ff9c4978f944",
+    songs: [
+      "Real One",
+      "Friendly",
+      "Bad Gyal",
+      "Broke Boyz",
+      "Dem Blues",
+      "Mud",
+      "My Sister",
+      "No Worries",
+      "Carry & Go",
+      "Good Time",
+      "Outro",
+    ],
+    artist: "Shaybo",
+    creatorId: new ObjectID(0)    
+  },
+  {
+    name: "Everything Tasteful",
+    picture: "https://i0.wp.com/glassefactory.com/wp-content/uploads/2021/03/6b9b6d604359f0dbad231280e66d3393.640x640x1.jpg?fit=640%2C640&ssl=1",
+    songs: [
+      "Sous tes lèvres",
+      "Atlantis",
+      "Parapluie",
+      "Sipa",
+      "Gasoleana",
+      "Viral",
+      "Dodow&ve",
+      "Juju",
+      "Nytro",
+      "In Luv Again",
+      "Cyborg",
+      "Laisse ça",
+      "Holy",
+      "Show Me Love",
+      "Kita",
+    ],
+    artist: "Lala &ce",
+    creatorId: new ObjectID(0)    
+  },
+  {
+    name: "First Class",
+    picture: "https://i.scdn.co/image/ab67616d0000b2733e6de54d837388d319147a08",
+    songs: [
+      "Sugar Zaddy",
+      "Too Bad",
+      "Bad N Boujee",
+      "Higher",
+      "Werk It Out",
+    ],
+    artist: "Nadia Rose",
+    creatorId: new ObjectID(0)    
+  },
+
 ];
 
 module.exports = albums;
