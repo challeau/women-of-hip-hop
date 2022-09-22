@@ -5,8 +5,16 @@ const app = express();
 // Link middleware
 const { isAuthenticated } = require("./middleware/middlewares.js");
 
+// Link frontend
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true
+  })
+);
+
 // Link error handler
-// require('./error-handling')(app);
+require('./error-handling')(app);
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
 require("dotenv").config();
