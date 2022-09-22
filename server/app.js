@@ -1,6 +1,8 @@
 // Express
 const express = require("express");
 const app = express();
+const cors = require('cors');
+
 
 // Link middleware
 const { isAuthenticated } = require("./middleware/middlewares.js");
