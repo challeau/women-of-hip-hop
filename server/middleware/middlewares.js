@@ -26,7 +26,7 @@ const isAuthenticated = async (req, res, next) => {
 // checks for allowed crud operations
 const canEdit = async (req, res, next) => {
   try {
-    console.log(req);
+    console.log(req.params, req.user);
     const reqId = req.params.requestId;
     // if (ObjectId.isValid(reqId) === false)
     //   throw ({ message: "Please provide a valid Id" });
