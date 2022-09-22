@@ -53,7 +53,6 @@ router.get("/shuffle", async (req, res, next) => {
 // add artist to db
 router.post('/', async (req, res, next) => {
   try {
-    console.log("!!!!!", req.body);
     const { name, picture, miniBio, flagSong } = req.body;
     const creatorId = req.user.id;
     const artist = await Artist.create({name: name, picture: picture,

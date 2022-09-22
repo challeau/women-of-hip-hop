@@ -5,7 +5,7 @@ const cors = require('cors');
 
 // Link frontend
 app.use(cors({
-  origin: ['http://localhost:3000', process.env.FRONTEND_URL],  // <== URL of our future React app
+  origin: ['http://localhost:3000', 'https://wohh.netlify.app/'],
   credentials: true
 }));
 
