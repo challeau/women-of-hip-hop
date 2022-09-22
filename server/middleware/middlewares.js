@@ -26,6 +26,7 @@ const isAuthenticated = async (req, res, next) => {
 // checks for allowed crud operations
 const canEdit = async (req, res, next) => {
   try {
+    console.log(req);
     const reqId = req.params.requestId;
     // if (ObjectId.isValid(reqId) === false)
     //   throw ({ message: "Please provide a valid Id" });
@@ -33,10 +34,8 @@ const canEdit = async (req, res, next) => {
       return next();
     else if (String(req.user.id) === String(reqId))	// for user-based operations
       return next();
-    console.log('!!!!!>', reqId, req.user.Id);
     // ?? -> nullish coalescing operator > returns the first non null/undefined value 
     let requestObj = await Artist.findById(reqId) ?? await Album.findById(reqId) ?? await Favorite.findById(reqId);
-    console.log('????>', requestObj);
     if (requestObj !== null && String(req.user.id) === String(requestObj.creatorId))	// for artist-based operations 
       return next();
     else
