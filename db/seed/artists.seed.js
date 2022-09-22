@@ -184,6 +184,15 @@ const artists = [
     flagSong: "https://www.youtube.com/watch?v=iPGgnzc34tY",
     creatorId: new ObjectID(0),
   },
+  {
+    name: "",
+    picture:
+      "",
+    miniBio:
+      '',
+    flagSong: "",
+    creatorId: new ObjectID(0),
+  }
 ];
 
 module.exports = artists;
