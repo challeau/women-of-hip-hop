@@ -54,8 +54,10 @@ router.post("/", async (req, res, next) => {
 router.patch("/:requestId", canEdit, async (req, res, next) => {
   try {
     const albumToUpdate = req.body;
-    const artistObj = await Artist.find({ name: albumToUpdate.artist });
-    albumToUpdate.artist = artistObj[0].id;
+    if (albumToUpdate.artist){
+      const artistObj = await Artist.find({ name: albumToUpdate.artist });
+      albumToUpdate.artist = artistObj[0].id;
+    }
     const { requestId } = req.params;
     const updatedAlbum = await Album.findByIdAndUpdate(
       requestId,
