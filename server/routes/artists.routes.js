@@ -67,6 +67,7 @@ router.post('/', async (req, res, next) => {
 router.patch("/:requestId", canEdit, async (req, res, next) => {
   try {
     const artistToUpdate = req.body;
+    constole.log(artistToUpdate);
     const { requestId } = req.params;
     const updatedArtist = await Artist.findByIdAndUpdate(
       requestId,
